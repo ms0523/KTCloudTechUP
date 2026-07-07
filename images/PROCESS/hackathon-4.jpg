@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>kt cloud TECH UP 1기 스케치</title>
+
+    <style>
+      :root {
+        --bg0: #f7fbff;
+        --bg1: #ffffff;
+        --card: rgba(255, 255, 255, 0.9);
+        --line: rgba(15, 23, 42, 0.08);
+        --text: #0f172a;
+        --muted: rgba(15, 23, 42, 0.7);
+        --accent: #2bb7c6;
+        --accent2: #6b5cff;
+        --shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+        --radius: 18px;
+
+        /* 카드 크기 상수화 */
+        --card-w: 420px;
+        --card-h: 280px;
+        --marquee-pad: 14px;
+        --marquee-gap: 14px;
+
+        /* ✅ 여기만 바꾸면 모든 섹션 속도 통일 */
+        --marquee-speed: 45s;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(900px 500px at 12% 10%, rgba(107, 92, 255, 0.12), transparent 55%),
+          radial-gradient(900px 500px at 80% 18%, rgba(43, 183, 198, 0.12), transparent 55%),
+          linear-gradient(180deg, var(--bg0), var(--bg1));
+      }
+
+      .wrap {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 34px 20px 90px;
+      }
+
+      /* Header */
+      .hero {
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.88);
+        border-radius: calc(var(--radius) + 10px);
+        padding: 30px 24px;
+        box-shadow: var(--shadow);
+      }
+
+      .kicker {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        padding: 7px 12px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.75);
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+      }
+
+      h1 {
+        margin: 14px 0 10px;
+        font-size: 42px;
+        line-height: 1.1;
+        letter-spacing: -0.9px;
+        font-weight: 900;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        max-width: 76ch;
+        font-size: 16px;
+      }
+
+      /* Section */
+      .section {
+        margin-top: 22px;
+        padding: 18px 16px 16px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.74);
+        box-shadow: var(--shadow);
+      }
+
+      .section-title {
+        margin: 0;
+        font-size: 24px;
+        letter-spacing: -0.3px;
+        font-weight: 850;
+      }
+
+      .section-desc {
+        margin: 8px 0 12px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      /* Tags */
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 10px 0 14px;
+      }
+
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        font-size: 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(239, 68, 68, 0.18);
+        color: rgba(185, 28, 28, 0.95);
+        background: rgba(239, 68, 68, 0.08);
+        letter-spacing: -0.1px;
+        font-weight: 650;
+      }
+
+      /* Video */
+      .video-wrap {
+        margin: 14px 0 18px;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.78);
+      }
+
+      .video-wrap iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: none;
+        display: block;
+      }
+
+      .video-caption {
+        margin: 8px 12px 10px;
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .video-caption a {
+        color: var(--accent2);
+        text-decoration: none;
+        font-weight: 700;
+      }
+
+      .video-caption a:hover { text-decoration: underline; }
+
+      /* ✅ Marquee */
+      .marquee {
+        position: relative;
+        overflow: hidden;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.65);
+        min-height: calc(var(--card-h) + (var(--marquee-pad) * 2));
+      }
+
+      .marquee-inner {
+        display: flex;
+        gap: var(--marquee-gap);
+        padding: var(--marquee-pad);
+        width: max-content;
+        will-change: transform;
+        animation: marquee-scroll var(--marquee-speed) linear infinite;
+      }
+
+      @keyframes marquee-scroll {
+        from { transform: translateX(0); }
+        to   { transform: translateX(-50%); }
+      }
+
+      .card {
+        flex: 0 0 auto;
+        width: var(--card-w);
+        height: var(--card-h);
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 22px rgba(15, 23, 42, 0.10);
+        background: transparent; /* ✅ 흰 바탕 느낌 최소화 */
+      }
+
+      /* ✅ 공백 없이 꽉 차게 + 모서리 둥글게 (카드에서 overflow hidden) */
+      .card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* ✅ 핵심: 꽉 차게 */
+        display: block;
+        cursor: zoom-in;
+      }
+
+      /* 모바일: 자동 스크롤 제거 + 가로 스크롤 */
+      @media (max-width: 768px) {
+        .marquee { overflow-x: auto; }
+        .marquee-inner { animation: none; width: max-content; }
+      }
+
+      @media (max-width: 520px) {
+        h1 { font-size: 34px; }
+        .section-title { font-size: 22px; }
+        :root { --card-w: 78vw; --card-h: 240px; }
+      }
+
+      /* Footer */
+      .footer {
+        margin-top: 64px;
+        padding: 28px 20px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.72);
+        box-shadow: var(--shadow);
+        font-size: 13px;
+        line-height: 1.6;
+        color: rgba(15, 23, 42, 0.6);
+        text-align: center;
+      }
+
+      .footer .btns {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin: 16px 0;
+      }
+
+      .footer .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 650;
+      }
+
+      .footer .btn.primary {
+        border-color: rgba(43, 183, 198, 0.35);
+        background: linear-gradient(
+          90deg,
+          rgba(43, 183, 198, 0.18),
+          rgba(107, 92, 255, 0.14)
+        );
+      }
+
+      .footer .btn:hover { filter: brightness(0.98); }
+      .footer .mini { margin-top: 12px; font-size: 12px; opacity: 0.6; }
+
+      /* Lightbox */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.85);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        cursor: zoom-out;
+      }
+
+      .lightbox img {
+        max-width: 92vw;
+        max-height: 88vh;
+        border-radius: 16px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        background: #fff;
+      }
+    </style>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "58dcea4dc09d4eaea447c2540cf2ab6e"}'></script><!-- End Cloudflare Web Analytics -->
+  </head>
+
+  <body>
+    <div class="wrap">
+      <header class="hero">
+        <div class="kicker"><span class="dot"></span> kt cloud TECH UP · 1기</div>
+        <h1>kt cloud TECH UP 1기 스케치</h1>
+        <p class="subtitle">1기에서 함께했던 순간과 현장의 분위기를 기록한 아카이브입니다.</p>
+      </header>
+
+      <!-- 0) WARM UP DAY -->
+      <section class="section">
+        <h2 class="section-title">🚀 WARM UP DAY</h2>
+        <p class="section-desc">과정 시작 전, 챌린저 간 연결감과 팀 분위기를 만드는 네트워킹</p>
+
+        <div class="video-wrap">
+          <iframe
+            src="https://www.youtube.com/embed/bo9IgI0sPpE"
+            title="TECH UP 1기 WARM UP DAY 현장 스케치"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+
+          <p class="video-caption">
+            🎥 WARM UP DAY 현장 스케치 영상 —
+            <a href="https://www.youtube.com/watch?v=bo9IgI0sPpE" target="_blank" rel="noopener">YouTube에서 보기</a>
+          </p>
+        </div>
+
+        <div class="marquee">
+          <div class="marquee-inner">
+            <!-- set A -->
+            <div class="card"><img src="images-warmup/warmup-1.png" alt="WARM UP 1" /></div>
+            <div class="card"><img src="images-warmup/warmup-2.png" alt="WARM UP 2" /></div>
+            <div class="card"><img src="images-warmup/warmup-3.png" alt="WARM UP 3" /></div>
+            <div class="card"><img src="images-warmup/warmup-4.png" alt="WARM UP 4" /></div>
+            <div class="card"><img src="images-warmup/warmup-5.png" alt="WARM UP 5" /></div>
+            <div class="card"><img src="images-warmup/warmup-6.png" alt="WARM UP 6" /></div>
+            <div class="card"><img src="images-warmup/warmup-7.png" alt="WARM UP 7" /></div>
+            <div class="card"><img src="images-warmup/warmup-8.png" alt="WARM UP 8" /></div>
+            <div class="card"><img src="images-warmup/warmup-9.png" alt="WARM UP 9" /></div>
+
+            <!-- set B (동일 복제) -->
+            <div class="card"><img src="images-warmup/warmup-1.png" alt="WARM UP 1" /></div>
+            <div class="card"><img src="images-warmup/warmup-2.png" alt="WARM UP 2" /></div>
+            <div class="card"><img src="images-warmup/warmup-3.png" alt="WARM UP 3" /></div>
+            <div class="card"><img src="images-warmup/warmup-4.png" alt="WARM UP 4" /></div>
+            <div class="card"><img src="images-warmup/warmup-5.png" alt="WARM UP 5" /></div>
+            <div class="card"><img src="images-warmup/warmup-6.png" alt="WARM UP 6" /></div>
+            <div class="card"><img src="images-warmup/warmup-7.png" alt="WARM UP 7" /></div>
+            <div class="card"><img src="images-warmup/warmup-8.png" alt="WARM UP 8" /></div>
+            <div class="card"><img src="images-warmup/warmup-9.png" alt="WARM UP 9" /></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 1) 이론 강의 & 프로젝트 -->
+      <section class="section">
+        <h2 class="section-title">📚 이론 강의 & 프로젝트</h2>
+        <p class="section-desc">기초부터 실무 감각까지 이어지는 커리큘럼, 만들면서 배우고 함께 부딪치며 성장하는 시간</p>
+
+        <div class="tags">
+          <span class="tag">실습 중심</span>
+          <span class="tag">기초 설계</span>
+          <span class="tag">문제 해결</span>
+          <span class="tag">코드 이해</span>
+        </div>
+
+        <div class="marquee">
+          <div class="marquee-inner">
+            <div class="card"><img src="images-lecture-project/lecture-project-1.jpg" alt="이론 강의 1" /></div>
+            <div class="card"><img src="images-lecture-project/lecture-project-2.jpg" alt="이론 강의 2" /></div>
+            <div class="card"><img src="images-lecture-project/lecture-project-3.jpg" alt="이론 강의 3" /></div>
+
+            <div class="card"><img src="images-lecture-project/lecture-project-1.jpg" alt="이론 강의 1" /></div>
+            <div class="card"><img src="images-lecture-project/lecture-project-2.jpg" alt="이론 강의 2" /></div>
+            <div class="card"><img src="images-lecture-project/lecture-project-3.jpg" alt="이론 강의 3" /></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2) 해커톤 -->
+      <section class="section">
+        <h2 class="section-title">⚡ 해커톤</h2>
+        <p class="section-desc">짧은 시간, 가장 뜨겁게. 팀이 하나로 달리는 스프린트</p>
+
+        <div class="tags">
+          <span class="tag">아이디어</span>
+          <span class="tag">스프린트</span>
+          <span class="tag">협업</span>
+          <span class="tag">피치</span>
+        </div>
+
+        <div class="marquee">
+          <div class="marquee-inner">
+            <div class="card"><img src="images-hackathon/hackathon-1.jpg" alt="해커톤 1" /></div>
+            <div class="card"><img src="images-hackathon/hackathon-2.png" alt="해커톤 2" /></div>
+            <div class="card"><img src="images-hackathon/hackathon-3.png" alt="해커톤 3" /></div>
+            <div class="card"><img src="images-hackathon/hackathon-4.jpg" alt="해커톤 4" /></div>
+            <div class="card"><img src="images-hackathon/hackathon-5.jpg" alt="해커톤 5" /></div>
+
+            <div class="card"><img src="images-hackathon/hackathon-1.jpg" alt="해커톤 1" /></div>
+            <div class="card"><img src="images-hackathon/hackathon-2.png" alt="해커톤 2" /></div>
+            <div class="card"><img src="images-hackathon/hackathon-3.png" alt="해커톤 3" /></div>
+            <div class="card"><img src="images-hackathon/hackathon-4.jpg" alt="해커톤 4" /></div>
+            <div class="card"><img src="images-hackathon/hackathon-5.jpg" alt="해커톤 5" /></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3) 특강 & 멘토링 -->
+      <section class="section">
+        <h2 class="section-title">🎤 kt cloud 특강 & 현직자 멘토링</h2>
+        <p class="section-desc">현업 인사이트로 방향을 잡고, 피드백으로 밀도를 올리는 시간</p>
+
+        <div class="tags">
+          <span class="tag">현업 인사이트</span>
+          <span class="tag">피드백</span>
+          <span class="tag">커리어 시야</span>
+        </div>
+
+        <div class="marquee">
+          <div class="marquee-inner">
+            <div class="card"><img src="images-mentoring/mentoring-1.png" alt="멘토링 1" /></div>
+            <div class="card"><img src="images-mentoring/mentoring-2.png" alt="멘토링 2" /></div>
+            <div class="card"><img src="images-mentoring/mentoring-3.png" alt="멘토링 3" /></div>
+            <div class="card"><img src="images-mentoring/mentoring-4.png" alt="멘토링 4" /></div>
+            <div class="card"><img src="images-mentoring/mentoring-5.png" alt="멘토링 5" /></div>
+
+            <div class="card"><img src="images-mentoring/mentoring-1.png" alt="멘토링 1" /></div>
+            <div class="card"><img src="images-mentoring/mentoring-2.png" alt="멘토링 2" /></div>
+            <div class="card"><img src="images-mentoring/mentoring-3.png" alt="멘토링 3" /></div>
+            <div class="card"><img src="images-mentoring/mentoring-4.png" alt="멘토링 4" /></div>
+            <div class="card"><img src="images-mentoring/mentoring-5.png" alt="멘토링 5" /></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4) 실무통합 프로젝트 -->
+      <section class="section">
+        <h2 class="section-title">🛰️ 실무통합 프로젝트</h2>
+        <p class="section-desc">대규모 협업으로 조직 문화까지 경험하는 메인 프로젝트</p>
+
+        <div class="tags">
+          <span class="tag">실무 기준</span>
+          <span class="tag">대규모 협업</span>
+          <span class="tag">조직 문화</span>
+          <span class="tag">의사결정</span>
+        </div>
+
+        <div class="marquee">
+          <div class="marquee-inner">
+            <div class="card"><img src="images-integration/integration-1.png" alt="실무통합 프로젝트 1" /></div>
+            <div class="card"><img src="images-integration/integration-2.png" alt="실무통합 프로젝트 2" /></div>
+            <div class="card"><img src="images-integration/integration-3.png" alt="실무통합 프로젝트 3" /></div>
+            <div class="card"><img src="images-integration/integration-4.png" alt="실무통합 프로젝트 4" /></div>
+            <div class="card"><img src="images-integration/integration-5.png" alt="실무통합 프로젝트 5" /></div>
+
+            <div class="card"><img src="images-integration/integration-1.png" alt="실무통합 프로젝트 1" /></div>
+            <div class="card"><img src="images-integration/integration-2.png" alt="실무통합 프로젝트 2" /></div>
+            <div class="card"><img src="images-integration/integration-3.png" alt="실무통합 프로젝트 3" /></div>
+            <div class="card"><img src="images-integration/integration-4.png" alt="실무통합 프로젝트 4" /></div>
+            <div class="card"><img src="images-integration/integration-5.png" alt="실무통합 프로젝트 5" /></div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>
+          이 모든 과정은 TECH UP 1기에서 실제로 진행되었습니다.<br />
+          같은 여정을 함께하고 싶다면, TECH UP 2기에 지원해 보세요!
+        </div>
+
+        <div class="btns">
+          <a class="btn primary" href="https://ktcloud-techup.com/" target="_blank" rel="noopener">🚀 TECH UP 2기 모집 페이지</a>
+          <a class="btn" href="https://www.instagram.com/ktcloud_tech_up/" target="_blank" rel="noopener">📷 Instagram</a>
+        </div>
+
+      </footer>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+      <img id="lightbox-img" alt="확대 이미지" />
+    </div>
+
+    <script>
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+
+      const images = Array.from(document.querySelectorAll(".card img"));
+      let currentIndex = -1;
+
+      images.forEach((img, index) => {
+        img.addEventListener("click", (e) => {
+          e.stopPropagation();
+          currentIndex = index;
+          openLightbox();
+        });
+      });
+
+      function openLightbox() {
+        lightboxImg.src = images[currentIndex].src;
+        lightbox.style.display = "flex";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.style.display = "none";
+        lightboxImg.src = "";
+        document.body.style.overflow = "";
+        currentIndex = -1;
+      }
+
+      function showNext() {
+        currentIndex = (currentIndex + 1) % images.length;
+        lightboxImg.src = images[currentIndex].src;
+      }
+
+      function showPrev() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        lightboxImg.src = images[currentIndex].src;
+      }
+
+      lightbox.addEventListener("click", closeLightbox);
+
+      document.addEventListener("keydown", (e) => {
+        if (lightbox.style.display !== "flex") return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") showNext();
+        if (e.key === "ArrowLeft") showPrev();
+      });
+    </script>
+  </body>
+</html>

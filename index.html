@@ -134,105 +134,137 @@
     </div>
   </section>
 
-  <!-- ===================== TEAM PROJECT (top:1398, h:935) ===================== -->
-  <section class="team-project">
-    <div class="container">
-      <p class="eyebrow">단계별 프로젝트를 거쳐 마침내 도달하는 실무 레벨</p>
-      <h2 class="section-title section-title--center">
-        조직 문화까지 체득하는<br>
-        <span class="accent">대규모 팀프로젝트</span>
-      </h2>
+  <!-- ===================== TECH UP PROCESS ===================== -->
+<section class="techup-process">
+  <div class="container">
+    <p class="eyebrow-gray">협업 특강과 멘토링으로 완성도를 더해</p>
+    <h2 class="section-title section-title--center">
+      기초부터 실무까지<br>
+      <span class="accent">TECH UP 프로세스</span>
+    </h2>
 
-      <ul class="tag-list tag-list--center">
-        <li class="tag">소규모 기업</li>
-        <li class="tag">다양한 직군</li>
-        <li class="tag">운영 효율</li>
-        <li class="tag">조직문화</li>
-        <li class="tag">포트폴리오</li>
-      </ul>
+    <div class="tabs" id="projectTabs">
+      <!-- 탭 버튼 리스트 (active는 첫 번째 버튼에만 배치합니다) -->
+      <div class="tabs__list" role="tablist">
+        <button class="tabs__btn active" role="tab" aria-selected="true" data-tab="basic">이론강의&프로젝트</button>
+        <button class="tabs__btn" role="tab" aria-selected="false" data-tab="advanced">해커톤</button>
+        <button class="tabs__btn" role="tab" aria-selected="false" data-tab="hackathon">kt cloud 특강 &현직자 멘토링</button>
+        <button class="tabs__btn" role="tab" aria-selected="false" data-tab="field">실무통합 프로젝트</button>
+      </div>
 
-      <div class="tabs" id="projectTabs">
-        <div class="tabs__list" role="tablist">
-          <button class="tabs__btn active" role="tab" aria-selected="true" data-tab="basic">기본 프로젝트</button>
-          <button class="tabs__btn" role="tab" aria-selected="false" data-tab="advanced">심화 프로젝트</button>
-          <button class="tabs__btn" role="tab" aria-selected="false" data-tab="hackathon">해커톤</button>
-          <button class="tabs__btn" role="tab" aria-selected="false" data-tab="field">실무 프로젝트</button>
+      <!-- 1. 이론강의 & 프로젝트 패널 -->
+      <div class="tabs__panel active" data-panel="basic">
+        <div class="tabs__content-text">
+          <p class="tabs__main-desc">기초부터 실무 감각까지 이어지는 커리큘럼, 만들면서 배우고 함께 부딪히며 성장하는 시간</p>
+          <ul class="tag-list-small">
+            <li class="tag-small">실무 중심</li>
+            <li class="tag-small">기초 설계</li>
+            <li class="tag-small">문제 해결</li>
+            <li class="tag-small">코드 이해</li>
+          </ul>
         </div>
-
-        <div class="tabs__panel active" data-panel="basic">
-          <img class="tabs__media" src="https://placehold.co/476x337/f5f5f5/999999?text=Project+Preview" alt="">
-          <div class="tabs__steps">
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 01. AI활용 프로토타이핑</p>
-              <p class="tabs__step-desc">생성형 AI를 활용해 디자인 아이디어를 발상하고 프로토타입을 제작합니다.</p>
-            </div>
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 02. 데이터 기반 UI/UX 개선</p>
-              <p class="tabs__step-desc">데이터 분석을 통해 개선 가설을 수립하고 검증합니다.</p>
-            </div>
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 03. 디자인 시스템 및 실무 협업</p>
-              <p class="tabs__step-desc">체계적인 컴포넌트 관리와 디자인 시스템으로 팀 협업 프로세스를 구축합니다.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="tabs__panel" data-panel="advanced">
-          <img class="tabs__media" src="https://placehold.co/476x337/f5f5f5/999999?text=Project+Preview" alt="">
-          <div class="tabs__steps">
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 01. 복합 문제 정의</p>
-              <p class="tabs__step-desc">여러 이해관계자가 얽힌 문제를 정의하고 우선순위를 설정합니다.</p>
-            </div>
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 02. 디자인 시스템 구축</p>
-              <p class="tabs__step-desc">직접 디자인 시스템을 설계하고 운영하는 경험을 쌓습니다.</p>
-            </div>
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 03. 산출물 관리</p>
-              <p class="tabs__step-desc">실무 수준의 협업 및 리뷰 프로세스를 체득합니다.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="tabs__panel" data-panel="hackathon">
-          <img class="tabs__media" src="https://placehold.co/476x337/f5f5f5/999999?text=Project+Preview" alt="">
-          <div class="tabs__steps">
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 01. 아이디어 스프린트</p>
-              <p class="tabs__step-desc">제한 시간 안에 아이디어를 구체화합니다.</p>
-            </div>
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 02. 팀 빌드업</p>
-              <p class="tabs__step-desc">팀워크로 프로덕트를 빠르게 완성합니다.</p>
-            </div>
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 03. 발표 및 피드백</p>
-              <p class="tabs__step-desc">결과물을 발표하고 실무 감각의 피드백을 받습니다.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="tabs__panel" data-panel="field">
-          <img class="tabs__media" src="https://placehold.co/476x337/f5f5f5/999999?text=Project+Preview" alt="">
-          <div class="tabs__steps">
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 01. 조직 시뮬레이션</p>
-              <p class="tabs__step-desc">실제 조직과 유사한 환경에서 프로덕트를 기획합니다.</p>
-            </div>
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 02. 다직군 협업</p>
-              <p class="tabs__step-desc">다양한 직군과 커뮤니케이션 역량을 강화합니다.</p>
-            </div>
-            <div class="tabs__step">
-              <p class="tabs__step-title">STEP 03. 포트폴리오 완성</p>
-              <p class="tabs__step-desc">완성도 높은 결과물로 포트폴리오를 마무리합니다.</p>
+        <div class="tabs__slider-wrapper">
+          <div class="swiper project-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><img src="images/PROCESS/lecture-project-1.jpg" alt="이론강의 이미지 1"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/lecture-project-2.jpg" alt="이론강의 이미지 2"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/lecture-project-3.jpg" alt="이론강의 이미지 3"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/lecture-project-1.jpg" alt="이론강의 이미지 1 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/lecture-project-2.jpg" alt="이론강의 이미지 2 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/lecture-project-3.jpg" alt="이론강의 이미지 3 복제"></div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+
+      <!-- 2. 해커톤 패널 -->
+      <div class="tabs__panel" data-panel="advanced">
+        <div class="tabs__content-text">
+          <p class="tabs__main-desc">제한된 시간 속에서 아이디어를 고도화하고, 팀원들과 밤을 새우며 결과물을 완성하는 몰입의 경험</p>
+          <ul class="tag-list-small">
+            <li class="tag-small">아이디어 빌딩</li>
+            <li class="tag-small">밤샘 협업</li>
+            <li class="tag-small">네트워킹</li>
+            <li class="tag-small">한계 도전</li>
+          </ul>
+        </div>
+        <div class="tabs__slider-wrapper">
+          <div class="swiper project-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><img src="images/PROCESS/hackathon-1.png" alt="해커톤 이미지 1"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/hackathon-2.png" alt="해커톤 이미지 2"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/hackathon-3.png" alt="해커톤 이미지 3"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/hackathon-5.png" alt="해커톤 이미지 5"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/hackathon-1.png" alt="해커톤 이미지 1 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/hackathon-2.png" alt="해커톤 이미지 2 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/hackathon-3.png" alt="해커톤 이미지 3 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/hackathon-5.png" alt="해커톤 이미지 5 복제"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. kt cloud 특강 & 현직자 멘토링 패널 -->
+      <div class="tabs__panel" data-panel="hackathon">
+        <div class="tabs__content-text">
+          <p class="tabs__main-desc">현업의 생생한 트렌드를 배우는 특강과 디테일을 더해줄 전문가의 1:1 피드백 코칭 시간</p>
+          <ul class="tag-list-small">
+            <li class="tag-small">현직자 인사이트</li>
+            <li class="tag-small">1:1 피드백</li>
+            <li class="tag-small">실무 프로세스</li>
+            <li class="tag-small">커리어 설계</li>
+          </ul>
+        </div>
+        <div class="tabs__slider-wrapper">
+          <div class="swiper project-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><img src="images/PROCESS/mentoring-1.png" alt="멘토링 이미지 1"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/mentoring-2.png" alt="멘토링 이미지 2"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/mentoring-3.png" alt="멘토링 이미지 3"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/mentoring-4.png" alt="멘토링 이미지 4"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/mentoring-5.png" alt="멘토링 이미지 5"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/mentoring-1.png" alt="멘토링 이미지 1 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/mentoring-2.png" alt="멘토링 이미지 2 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/mentoring-3.png" alt="멘토링 이미지 3 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/mentoring-4.png" alt="멘토링 이미지 4 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/mentoring-5.png" alt="멘토링 이미지 5 복제"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 실무통합 프로젝트 패널 -->
+      <div class="tabs__panel" data-panel="field">
+        <div class="tabs__content-text">
+          <p class="tabs__main-desc">실제 기업의 비즈니스 문제를 정의하고 완성도 높은 프로덕트를 직접 구축해 보는 최종 관문</p>
+          <ul class="tag-list-small">
+            <li class="tag-small">기업 연계</li>
+            <li class="tag-small">최종 포트폴리오</li>
+            <li class="tag-small">실전 배포</li>
+            <li class="tag-small">성과 발표</li>
+          </ul>
+        </div>
+        <div class="tabs__slider-wrapper">
+          <div class="swiper project-swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><img src="images/PROCESS/integration-1.png" alt="실무 프로젝트 이미지 1"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/integration-2.png" alt="실무 프로젝트 이미지 2"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/integration-3.png" alt="실무 프로젝트 이미지 3"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/integration-4.png" alt="실무 프로젝트 이미지 4"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/integration-5.png" alt="실무 프로젝트 이미지 5"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/integration-1.png" alt="실무 프로젝트 이미지 1 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/integration-2.png" alt="실무 프로젝트 이미지 2 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/integration-3.png" alt="실무 프로젝트 이미지 3 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/integration-4.png" alt="실무 프로젝트 이미지 4 복제"></div>
+              <div class="swiper-slide"><img src="images/PROCESS/integration-5.png" alt="실무 프로젝트 이미지 5 복제"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div> <!-- // tabs -->
+  </div> <!-- // container -->
+</section>
 
   <!-- ===================== PORTFOLIO + TESTIMONIALS (top:2333, h:1471) ===================== -->
   <section class="showcase">
@@ -245,10 +277,10 @@
           <div class="portfolio__body">
             <h3>프로젝트명</h3>
             <p>프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명</p>
-            <ul class="tag-list">
-              <li class="tag">키워드</li>
-              <li class="tag">키워드</li>
-              <li class="tag">키워드</li>
+            <ul class="tag-list-small">
+              <li class="tag-small">키워드</li>
+              <li class="tag-small">키워드</li>
+              <li class="tag-small">키워드</li>
             </ul>
           </div>
         </article>
@@ -257,10 +289,10 @@
           <div class="portfolio__body">
             <h3>프로젝트명</h3>
             <p>프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명</p>
-            <ul class="tag-list">
-              <li class="tag">키워드</li>
-              <li class="tag">키워드</li>
-              <li class="tag">키워드</li>
+            <ul class="tag-list-small">
+              <li class="tag-small">키워드</li>
+              <li class="tag-small">키워드</li>
+              <li class="tag-small">키워드</li>
             </ul>
           </div>
         </article>
@@ -355,14 +387,18 @@
             </div>
           </div>
         </div>
-      </div>
+        <div class="curriculum-btn-wrap">
+      <a href="#" class="btn btn--primary">상세 커리큘럼 <i class="arrow"></i></a>
+    </div> 
+      </div> 
     </div>
+    
 
     <div class="instructor" id="instructor">
       <div class="container">
         <div class="instructor__head">
           <h2 class="section-title section-title--light">탄탄한 기술과 <br>경험을 지닌 전문 강사</h2>
-          <a href="#" class="btn btn--primary">상세 커리큘럼 <i class="arrow"></i></a>
+
         </div>
 
         <div class="instructor__card">
@@ -676,6 +712,7 @@
     <p class="footer__copy">&copy; 2026 TECH UP. All rights reserved.</p>
   </div>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <button class="to-top" id="toTop" aria-label="맨 위로">↑</button>
 

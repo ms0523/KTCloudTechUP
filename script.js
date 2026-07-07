@@ -29,8 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const isFixed = subNav.classList.contains('is-fixed');
 
       if (shouldBeFixed && !isFixed) {
-        // .hero의 isolation: isolate 때문에 fixed여도 안에 갇히는 걸 방지하려고
-        // body로 잠깐 옮겼다가, 풀리면 다시 hero 안으로 되돌림
         document.body.appendChild(subNav);
         subNav.classList.add('is-fixed');
         subNavSpacer.classList.add('active');
@@ -49,45 +47,78 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSubNavState();
   }
 
-  /* ---------- 💡 Intro Character Animation (화면 진입 시 매번 전체 재생 버전) ---------- */
+  /* ---------- 💡 Intro Character Animation ---------- */
   const introSection = document.querySelector('.intro');
   if (introSection) {
-    
     const introObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            // 1. 화면에 들어오면 혹시 남아있을지 모를 클래스를 먼저 지우고
             introSection.classList.remove('is-active');
-            
-            // 2. 브라우저에게 초기화 상태를 확실히 인지시킨 뒤 (렌더링 리플로우)
             void introSection.offsetWidth; 
-            
-            // 3. 클래스를 딱 붙여서 캐릭터와 말풍선 전체가 동시에 날아오게 합니다.
             introSection.classList.add('is-active');
           } else {
-            // 4. 💡 화면 밖으로 완전히 벗어나면 클래스를 미리 제거해 둡니다. (다음 진입 시 재실행 대기)
             introSection.classList.remove('is-active');
           }
         });
       },
-      { 
-        /* 캐릭터 무대가 화면에 20%(0.2) 정도 보이기 시작할 때 애니메이션 가동 */
-        threshold: 0.3
-      }
+      { threshold: 0.3 }
     );
-
-    // 감시 카메라 작동 시작
     introObserver.observe(introSection);
   }
 
-  /* ---------- Team project tabs ---------- */
+  /* ---------- ✨ TECH UP PROCESS (멀티 탭 Swiper 완벽 수정본) ---------- */
   const tabButtons = document.querySelectorAll('.tabs__btn');
   const tabPanels = document.querySelectorAll('.tabs__panel');
+  let projectSwiper = null;
+
+  // 활성화된 탭 패널 내부의 Swiper만 조준해서 초기화하는 함수
+  function initActiveSwiper() {
+    // 1. 현재 active 클래스가 붙은 패널을 찾습니다.
+    const activePanel = document.querySelector('.tabs__panel.active');
+    if (!activePanel) return;
+
+    // 2. 그 패널 '내부'에 있는 스위퍼 엘리먼트를 찾습니다.
+    const swiperTarget = activePanel.querySelector('.project-swiper');
+    if (!swiperTarget) return;
+
+    // 3. 기존에 돌아가던 Swiper 인스턴스가 있다면 파괴
+    if (projectSwiper) {
+      projectSwiper.destroy(true, true);
+      projectSwiper = null;
+    }
+
+    // 4. 찾은 타겟에만 정확하게 Swiper를 입혀줍니다.
+    projectSwiper = new Swiper(swiperTarget, {
+      slidesPerView: 'auto',
+      spaceBetween: 16,
+      loop: true,
+      speed: 5000,
+      allowTouchMove: false,
+      observeParents: true,
+      observer: true,
+      autoplay: {
+        delay: 0,
+        disableOnInteraction: false,
+      },
+    });
+  }
+
+  // 첫 페이지 로드 시 (첫 번째 탭 기본 실행)
+  initActiveSwiper();
+
+  // 탭 버튼 클릭 기능
   tabButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const target = btn.dataset.tab;
 
+      // 1. 기존 슬라이더 안전하게 파괴
+      if (projectSwiper) {
+        projectSwiper.destroy(true, true);
+        projectSwiper = null;
+      }
+
+      // 2. 탭 활성화 클래스 교체
       tabButtons.forEach((b) => {
         b.classList.remove('active');
         b.setAttribute('aria-selected', 'false');
@@ -98,6 +129,11 @@ document.addEventListener('DOMContentLoaded', () => {
       tabPanels.forEach((panel) => {
         panel.classList.toggle('active', panel.dataset.panel === target);
       });
+
+      // 3. 탭이 완전히 바뀌어 display: flex가 반영된 후(100ms 지연) 해당 패널 슬라이더 켜기
+      setTimeout(() => {
+        initActiveSwiper();
+      }, 100);
     });
   });
 
@@ -146,6 +182,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
 });
-

@@ -26,7 +26,7 @@
   --radius-l: 30px;
 
   --header-h: 64px;
-  --subnav-h: 60px;
+  --subnav-h: 50px;
 }
 
 /* =========================================================
@@ -239,7 +239,7 @@ section{ padding-block: 88px; }
   /* 💡 고정된 상단 헤더만큼 패딩 공간 확보 */
   padding-top: var(--header-h, 80px); 
   /* 💡 바닥에 달라붙을 서브 내비게이션 높이만큼 여백 확보 */
-  padding-bottom: var(--subnav-h, 60px); 
+  padding-bottom: var(--subnav-h, 50px); 
   
   isolation: isolate;
   /* 💡 히어로 섹션이 브라우저 화면 높이를 가득 채우도록 보장 */
@@ -394,7 +394,7 @@ section{ padding-block: 88px; }
   height: 100%; 
   padding: 0 24px; /* 여백 균형 통일 */
   font-weight: 500;
-  font-size: 18px;
+  font-size: 14px;
   color: #aaaaaa; 
   border-bottom: 3px solid transparent;
   white-space: nowrap;

@@ -10,6 +10,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- Sub Navigation Sticky ---------- */
+  const subNav = document.getElementById('subNav');
+  const subNavSpacer = document.getElementById('subNavSpacer');
+  const heroSection = document.querySelector('.hero');
+
+  if (subNav && subNavSpacer && heroSection) {
+    let stickyPoint = heroSection.offsetTop + heroSection.offsetHeight - subNav.offsetHeight;
+
+    const recalcStickyPoint = () => {
+      if (!subNav.classList.contains('is-fixed')) {
+        stickyPoint = heroSection.offsetTop + heroSection.offsetHeight - subNav.offsetHeight;
+      }
+    };
+
+    const updateSubNavState = () => {
+      const shouldBeFixed = window.scrollY >= stickyPoint;
+      const isFixed = subNav.classList.contains('is-fixed');
+
+      if (shouldBeFixed && !isFixed) {
+        // .hero의 isolation: isolate 때문에 fixed여도 안에 갇히는 걸 방지하려고
+        // body로 잠깐 옮겼다가, 풀리면 다시 hero 안으로 되돌림
+        document.body.appendChild(subNav);
+        subNav.classList.add('is-fixed');
+        subNavSpacer.classList.add('active');
+      } else if (!shouldBeFixed && isFixed) {
+        heroSection.appendChild(subNav);
+        subNav.classList.remove('is-fixed');
+        subNavSpacer.classList.remove('active');
+      }
+    };
+
+    window.addEventListener('scroll', updateSubNavState, { passive: true });
+    window.addEventListener('resize', () => {
+      recalcStickyPoint();
+      updateSubNavState();
+    });
+    updateSubNavState();
+  }
+
   /* ---------- Team project tabs ---------- */
   const tabButtons = document.querySelectorAll('.tabs__btn');
   const tabPanels = document.querySelectorAll('.tabs__panel');
@@ -73,6 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
     toTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
+  }
+
+  /* ---------- 💡 Intro Character Animation ---------- */
+  const introSection = document.querySelector('.intro');
+  if (introSection) {
+    // 페이지 진입 후 0.2초(200ms) 뒤에 클래스를 붙여 애니메이션 가동
+    setTimeout(() => {
+      introSection.classList.add('is-active');
+    }, 200);
   }
 
 });

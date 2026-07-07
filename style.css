@@ -33,8 +33,10 @@
    RESET
 ========================================================= */
 *, *::before, *::after{ box-sizing: border-box; }
-html{ scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + var(--subnav-h) + 12px); }
+html{ scroll-behavior: smooth; scroll-padding-top: 40px calc(var(--header-h) + var(--subnav-h) + 10px); } 
+
 body{
+  min-width: 900px;
   margin: 0;
   font-family: var(--font-body);
   color: var(--color-black);
@@ -78,10 +80,10 @@ hr.thin{ border-top-width: .5px; }
   margin-bottom: 16px;
 }
 
-.eyebrow-dark {
+.eyebrow-gray {
   font-size: 18px;
   font-weight: 500;
-  color: var(--color-gray-1);
+  color: var(--color-gray-3);
   margin-bottom: 16px;
 }
 
@@ -245,6 +247,16 @@ section{ padding-block: 88px; }
   box-sizing: border-box;
 }
 
+.hero-title {
+  /* 💡 최소 36px에서 시작해 화면이 커지면 5vw만큼 늘어나다가 최대 56px에서 멈춥니다 */
+  font-size: clamp(36px, 5vw, 56px); 
+  font-weight: 800; 
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+  margin-bottom: 24px;
+}
+
 .hero__glow {
   position: absolute;
   top: 50%;
@@ -395,71 +407,177 @@ section{ padding-block: 88px; }
   font-weight: 700;
 }
 
+/* 1) 새로 추가: 스크롤 시 상단 고정 상태 */
+.sub-nav.is-fixed {
+  position: fixed;
+  top: 0;
+  bottom: auto;
+  left: 0;
+  z-index: 95;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 2) 새로 추가: fixed 전환 시 콘텐츠 밀림 방지용 spacer */
+.sub-nav-spacer {
+  display: none;
+  height: var(--subnav-h, 60px);
+}
+.sub-nav-spacer.active {
+  display: block;
+}
+
 /* =========================================================
-   INTRO — illustration + speech-bubble tags
+   INTRO — illustration + speech-bubble tags (ANIMATED)
 ========================================================= */
-.intro{ overflow: hidden; }
+.intro{ 
+  overflow: hidden;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f5ff 60%, #ffffff 100%);
+  max-height: 700px;
+  position: relative;
+}
 .intro__decor{
   position: absolute; inset: 0;
   background:
     radial-gradient(320px 240px at 8% 30%, rgba(59,161,255,.16), transparent 70%),
-    radial-gradient(280px 380px at 95% 70%, rgba(255,0,9,.12), transparent 70%);
+    radial-gradient(280px 380px at 95% 70%, rgba(255, 250, 117, 0.1), transparent 70%);
   pointer-events: none;
 }
 .intro__inner{ text-align: center; }
 
-/* Stage box mirrors the measured proportions of the reference design
-   (bounding box of character + all 4 bubbles = 590 x 313 at 1440 canvas) */
 .intro__stage{
   position: relative;
+  min-width: 400px;
   width: 100%;
   max-width: 720px;
-  aspect-ratio: 590 / 313;
-  margin: 32px auto 0;
+  aspect-ratio: 590 / 280;
+  margin: 10px auto 0;
 }
+
+/* 💡 [수정] 캐릭터 기본 상태 (아래에 투명하게 대기) */
 .intro__character {
   position: absolute;
   left: 50%;                
-  transform: translateX(-50%); 
-  top: 35%;
+  top: 24%;
+  bottom: 0px;
   width: 83%;
   z-index: 2;
   filter: drop-shadow(0 20px 30px rgba(0,0,0,.12));
+  
+  /* ── 애니메이션 초기 설정 ── */
+  opacity: 0;
+  transform: translate(-50%, 40px); /* 가로 정렬(-50%)을 유지하면서 아래로 40px 내려둠 */
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.8s ease;
 }
 
-.speech{ position: absolute; z-index: 3; }
-.speech__pill{
+/* 💡 [추가] 캐릭터 애니메이션 실행 (위로 부드럽게 슥 올라옴) */
+.intro.is-active .intro__character {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* 💡 [수정] 말풍선 공통 기본 상태 (투명하게 대기 및 가속도 곡선 부여) */
+.speech{ 
+  position: absolute; 
+  z-index: 3; 
+  
+  /* ── 애니메이션 초기 설정 ── */
+  opacity: 0;
+  /* 캐릭터가 먼저 올라온 뒤(0.3초 딜레이), 자석처럼 통통 튀며 모이도록 세팅 */
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.15), opacity 0.6s ease;
+  transition-delay: 0.3s;
+}
+
+/* 💡 [추가] 애니메이션 실행 시 모든 말풍선이 원래 제자리로 착! 모임 */
+.intro.is-active .speech {
+  opacity: 1;
+  transform: translate(0, 0) !important; /* 개별 transform 값을 초기화하여 원복 */
+}
+
+/* 💡 [수정] 각 말풍선별 도착 위치 + 애니메이션 시작 전 튕겨나갈 방향(transform) 설정 */
+
+/* 초록색 */
+.speech--green { left: 10%; top: 40%; width: 32.4%; height: 27.5%; transform: translate(-30px, -10px); }
+.speech--green .speech__pill { background: #17C28A; top: -20%; left: -7%; }
+.speech--green .speech__cursor { width: 85px; left: 135px; top: 35px; } /* 글자 상자 왼쪽 아래 */
+
+/* 파란색 */
+.speech--blue { left: 56.0%; top: 32%; width: 30.0%; height: 30.0%; transform: translate(30px, -10px); }
+.speech--blue .speech__pill { background: #7EA7FF; bottom: 65%; left: 36%; }
+.speech--blue .speech__cursor { width: 85px; right: 95px; top: 47px; } /* 글자 상자 오른쪽 아래 */
+
+/* 주황색 */
+.speech--orange { left: 3%; top: 87%; width: 32.9%; height: 20.4%; transform: translate(-30px, 10px); }
+.speech--orange .speech__pill { background: #FFB85C; top: 10%; left: -10%; }
+.speech--orange .speech__cursor { width: 85px; left: 120px; top: 10px;} /* 글자 상자 왼쪽 아래 */
+
+/* 핑크색 */
+.speech--pink { left: 76%; top: 95%; width: 25.9%; height: 26.5%; transform: translate(30px, 10px); }
+.speech--pink .speech__pill { background: #FF9CF7; bottom: 20%; right: 20%; }
+.speech--pink .speech__cursor { width: 85px; right: 94px; left: auto; top: -17px;} /* 글자 상자 오른쪽 아래 */
+
+/* 💡 [기존 유지] 말풍선 내부 텍스트 및 커서 스타일 */
+.speech__pill {
   position: absolute;
   display: inline-flex;
   align-items: center;
   padding: .55em 1.1em;
   border-radius: 999px;
   color: var(--color-white);
-  font-weight: 600;
-  font-size: clamp(11px, 1.6vw, 16px);
+  font-size: 24px;
+  font-weight: 700;
   white-space: nowrap;
   box-shadow: 0 10px 20px rgba(0,0,0,.14);
 }
-.speech__cursor{
+
+
+.speech__cursor {
   position: absolute;
+  z-index: 5;
   filter: drop-shadow(0 6px 10px rgba(0,0,0,.1));
+  
+  /* 💡 [핵심] 퍼센트(%) 대신 고정 수치 사용! 
+        글자 박스 아랫바닥(top: 100%)을 기준으로 딱 '6px'만 내려오도록 고정합니다. */
+  top: 100%; 
+  margin-top: -6px; /* 💡 이 마진 값을 조절해서 글자와의 간격을 원하는 만큼 칼같이 고정할 수 있습니다. */
+  
+  transform: none;
 }
 
-.speech--green{ left: 10%; top: 40%; width: 32.4%; height: 27.5%; }
-.speech--green .speech__pill{ background: #17C28A;top: 0%; left: 15%; }
-.speech--green .speech__cursor{ width: 32%; bottom: 7%; right: 17%; }
+@media (max-width: 900px) {
 
-.speech--blue{ left: 56.0%; top: 32%; width: 30.0%; height: 30.0%; }
-.speech--blue .speech__pill{ background: #7EA7FF; top: 0; right: 20%; }
-.speech--blue .speech__cursor{ width: 32%; bottom: 16%; left: 20%; }
+  .intro__character {
+  position: absolute;
+  left: 50%;                
+  top: 40%;
+  bottom: 0px;
+  width: 83%;
+  z-index: 2;
+}
 
-.speech--orange{ left: 3%; top: 87%; width: 32.9%; height: 20.4%; }
-.speech--orange .speech__pill{ background: #FFB85C; top: 30%; left: 10%; }
-.speech--orange .speech__cursor{ width: 32%; top: 30%; right: 24%; }
+  .speech__pill {
+    font-size: 15px; /* 💡 화면이 작아지면 글자가 깨지지 않게 15px로 강제 축소 */
+  }
 
-.speech--pink{ left: 70%; top: 89%; width: 25.9%; height: 26.5%; }
-.speech--pink .speech__pill{ background: #FF9CF7; bottom: 20%; right: 10%; }
-.speech--pink .speech__cursor{ width: 40%; top: 10%; left: 20%; }
+  /* 💡 모바일 환경 커서 공통 스타일 수정 */
+  .speech__cursor {
+    width: 20px; /* 💡 커서 크기를 작게 축소 */
+    margin-top: -3px; /* 💡 글자와의 간격을 좁힘 */
+  }
+
+  /* 💡 모바일 환경 개별 커서 위치 조정 */
+  .speech--green .speech__cursor {
+    width: 60px; left: 80px; top: 20px;
+  }
+  .speech--blue .speech__cursor {
+    width: 60px; right: 55px; top:28px;
+  }
+  .speech--orange .speech__cursor {
+    width: 60px; left: 76px; top: 5px;
+  }
+  .speech--pink .speech__cursor { 
+    width: 60px; right: 55px; top: -17px;
+  } 
+}
 
 /* =========================================================
    TEAM PROJECT TABS

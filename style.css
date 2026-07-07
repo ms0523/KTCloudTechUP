@@ -26,7 +26,7 @@
   --radius-l: 30px;
 
   --header-h: 64px;
-  --subnav-h: 48px;
+  --subnav-h: 60px;
 }
 
 /* =========================================================
@@ -74,14 +74,14 @@ hr.thin{ border-top-width: .5px; }
 } */
 
 .eyebrow {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   color: #dddddd;
   margin-bottom: 16px;
 }
 
 .eyebrow-gray {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   color: var(--color-gray-3);
   margin-bottom: 16px;
@@ -182,7 +182,7 @@ section{ padding-block: 88px; }
   display: flex;
   align-items: center;
   gap: 43px;
-  font-size: 15px;
+  font-size: 18px;
   color: var(--color-white);
   width: 100%; 
 }
@@ -211,7 +211,7 @@ section{ padding-block: 88px; }
 }
 
 .nav-toggle {
-  margin-left: auto;             /* 💡 메뉴 버튼을 무조건 오른쪽 끝으로 밀어버리는 속성 */
+  /* margin-left: auto; 💡 메뉴 버튼을 무조건 오른쪽 끝으로 밀어버리는 속성 */
   display: none;                
   flex-direction: column;
   gap: 5px;
@@ -249,7 +249,7 @@ section{ padding-block: 88px; }
 
 .hero-title {
   /* 💡 최소 36px에서 시작해 화면이 커지면 5vw만큼 늘어나다가 최대 56px에서 멈춥니다 */
-  font-size: clamp(36px, 5vw, 56px); 
+  font-size: clamp(36px, 5vw, 72px); 
   font-weight: 800; 
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -257,18 +257,29 @@ section{ padding-block: 88px; }
   margin-bottom: 24px;
 }
 
+/* 1. 기본 데스크톱 화면 설정 */
 .hero__glow {
   position: absolute;
   top: 50%;
-  right: -500px; 
-  transform: translateY(-40%);
-  width: 1500px; 
-  height: 1500px;
+  left: 30%;                       /* 💡 오른쪽 벽에 무조건 밀착 */
+  transform-origin: right center; /* 💡 화면 줄어들 때 오른쪽 고정, 왼쪽만 잘려나가게 설정 */
+  transform: translateY(-40%);    /* 💡 Y축 위치 미세조정 */
+  
+  width: 2000px; 
+  height: 2000px;
   background-image: url('./images/Circle_graphic.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain; 
   pointer-events: none;
+}
+
+/* 2. 화면 너비가 900px 이하로 줄어들었을 때 (모바일/태블릿) */
+@media (max-width: 900px) {
+  .hero__glow {
+    top: 60%;                     /* 💡 작은 화면에 맞춰 Y축 위치 살짝 아래로 내려줌 */
+    /* 오른쪽 고정 상태를 유지하면서, 크기만 자연스럽게 유지되도록 다른 속성은 건드리지 않습니다. */
+  }
 }
 
 .hero__inner { 
@@ -285,14 +296,6 @@ section{ padding-block: 88px; }
 }
 
 
-.hero__title {
-  font-size: clamp(48px, 5vw, 54px);
-  font-weight: 700;
-  margin-bottom: 32px;
-  letter-spacing: -0.0em;
-  line-height: 1.25;
-}
-
 /* 붉은 알약 형태의 태그 스타일 */
 .tag-list {
   display: flex;
@@ -307,7 +310,7 @@ section{ padding-block: 88px; }
   color: #ff4d5a;
   padding: 6px 14px;
   border-radius: 6px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
 }
 
@@ -333,7 +336,7 @@ section{ padding-block: 88px; }
 .info-group:first-child {
   border-right: 1px solid rgba(255, 255, 255, 0.3);
   padding-right: 24px;
-}
+} 
 
 .hero__info-item {
   margin: 0; 
@@ -341,13 +344,13 @@ section{ padding-block: 88px; }
 .hero__info-item dt {
   color: var(--color-accent);
   font-weight: 600;
-  font-size: 14px;
+  font-size: 18px;
   margin-bottom: 8px;
   letter-spacing: 0.02em;
 }
 .hero__info-item dd { 
   margin: 0;
-  font-size: 15px; 
+  font-size: 18px; 
   color: #eeeeee; 
   font-weight: 400;
 }
@@ -357,7 +360,7 @@ section{ padding-block: 88px; }
   text-decoration: line-through;
   color: #666666;
   margin-right: 6px;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 
@@ -391,7 +394,7 @@ section{ padding-block: 88px; }
   height: 100%; 
   padding: 0 24px; /* 여백 균형 통일 */
   font-weight: 500;
-  font-size: 15px;
+  font-size: 18px;
   color: #aaaaaa; 
   border-bottom: 3px solid transparent;
   white-space: nowrap;

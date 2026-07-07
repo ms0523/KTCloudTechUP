@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KT cloud 프로덕트 디자인 | TECH UP</title>
+<meta name="description" content="사용자 중심 경험을 설계하는 디자인 전문가 과정 - KT cloud 프로덕트 디자인">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="site-header" id="siteHeader">
+  <div class="header-top">
+    <div class="container header-top__inner">
+      <a href="#" class="logo"><img src="./images/techup_logo.png" alt="TECH UP"></a>
+      <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="top-nav" id="topNav">
+        <a href="#">웹 개발<i class="chev"></i></a>
+        <a href="#">인프라 / 혁신 기술<i class="chev"></i></a>
+        <a href="#">프로덕트 전문가<i class="chev"></i></a>
+        <a href="#" class="top-nav__apply">지원 확인</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <p class="eyebrow">사용자 중심 경험을 설계하는 디자인 전문가 과정</p>
+      <h1 class="hero__title">KT cloud 프로덕트 디자인</h1>
+      <ul class="tag-list">
+        <li class="tag">사용자 경험</li>
+        <li class="tag">UX 리서치</li>
+        <li class="tag">디자인 시스템</li>
+        <li class="tag">Figma</li>
+      </ul>
+
+      <!-- 좌우 2단 분할 -->
+      <div class="hero__info">
+        <div class="info-group">
+          <dl class="hero__info-item">
+            <dt>지원 일정</dt>
+            <dd>26.4.9 (목) ~ 26.5.25 (월)</dd>
+          </dl>
+          <dl class="hero__info-item">
+            <dt>교육 기간</dt>
+            <dd>26.6.10 (수) - 26.12.23 (수)</dd>
+          </dl>
+        </div>
+        <div class="info-group">
+          <dl class="hero__info-item">
+            <dt>수업 시간</dt>
+            <dd>월 - 금 9 to 6 (온라인)</dd>
+          </dl>
+          <dl class="hero__info-item">
+            <dt>수강료</dt>
+            <dd><span class="strike">19,166,400 원</span> 60만원</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+
+    <!-- 💡 [이동 완료] .hero 섹션이 끝나기 직전(바닥면)에 배치합니다 -->
+    <nav class="sub-nav" id="subNav">
+      <div class="container sub-nav__inner">
+        <a href="#intro" class="sub-nav__link active">과정 소개</a>
+        <a href="#curriculum" class="sub-nav__link">커리큘럼</a>
+        <a href="#instructor" class="sub-nav__link">강사소개</a>
+        <a href="#career" class="sub-nav__link">커리어지원</a>
+        <a href="#process" class="sub-nav__link">선발 절차</a>
+        <a href="#faq" class="sub-nav__link">자주 묻는 질문</a>
+      </div>
+    </nav>
+  </section>
+</main>
+
+  <!-- ===================== INTRO (top:826, h:572) ===================== -->
+  <section class="intro" id="intro">
+    <div class="intro__decor" aria-hidden="true"></div>
+    <div class="container intro__inner">
+       <p class="eyebrow-dark">문제 해결에서 디자인까지 사용자의 여정을 설계하다</p>
+      <h2 class="section-title section-title--center">
+        디자인 시스템부터 AI활용까지,<br>
+        <span class="accent">KT Cloud의 노하우</span>를 전수합니다.
+      </h2>
+      <div class="intro__stage" aria-hidden="true">
+        <img src="images/Me.png" alt="" class="intro__character">
+
+        <span class="speech speech--green">
+          <span class="speech__pill">데이터 분석</span>
+          <img class="speech__cursor" src="assets/Green_Cursor.svg" alt="">
+        </span>
+
+        <span class="speech speech--blue">
+          <span class="speech__pill">UX 설계</span>
+          <img class="speech__cursor" src="assets/Blue_Cursor.svg" alt="">
+        </span>
+
+        <span class="speech speech--orange">
+          <span class="speech__pill">실무 역량</span>
+          <img class="speech__cursor" src="assets/Orange_Cursor.svg" alt="">
+        </span>
+
+        <span class="speech speech--pink">
+          <span class="speech__pill">AI 활용</span>
+          <img class="speech__cursor" src="assets/Pink_Cursor.svg" alt="">
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== TEAM PROJECT (top:1398, h:935) ===================== -->
+  <section class="team-project">
+    <div class="container">
+      <p class="eyebrow">단계별 프로젝트를 거쳐 마침내 도달하는 실무 레벨</p>
+      <h2 class="section-title section-title--center">
+        조직 문화까지 체득하는<br>
+        <span class="accent">대규모 팀프로젝트</span>
+      </h2>
+
+      <ul class="tag-list tag-list--center">
+        <li class="tag">소규모 기업</li>
+        <li class="tag">다양한 직군</li>
+        <li class="tag">운영 효율</li>
+        <li class="tag">조직문화</li>
+        <li class="tag">포트폴리오</li>
+      </ul>
+
+      <div class="tabs" id="projectTabs">
+        <div class="tabs__list" role="tablist">
+          <button class="tabs__btn active" role="tab" aria-selected="true" data-tab="basic">기본 프로젝트</button>
+          <button class="tabs__btn" role="tab" aria-selected="false" data-tab="advanced">심화 프로젝트</button>
+          <button class="tabs__btn" role="tab" aria-selected="false" data-tab="hackathon">해커톤</button>
+          <button class="tabs__btn" role="tab" aria-selected="false" data-tab="field">실무 프로젝트</button>
+        </div>
+
+        <div class="tabs__panel active" data-panel="basic">
+          <img class="tabs__media" src="https://placehold.co/476x337/f5f5f5/999999?text=Project+Preview" alt="">
+          <div class="tabs__steps">
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 01. AI활용 프로토타이핑</p>
+              <p class="tabs__step-desc">생성형 AI를 활용해 디자인 아이디어를 발상하고 프로토타입을 제작합니다.</p>
+            </div>
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 02. 데이터 기반 UI/UX 개선</p>
+              <p class="tabs__step-desc">데이터 분석을 통해 개선 가설을 수립하고 검증합니다.</p>
+            </div>
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 03. 디자인 시스템 및 실무 협업</p>
+              <p class="tabs__step-desc">체계적인 컴포넌트 관리와 디자인 시스템으로 팀 협업 프로세스를 구축합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs__panel" data-panel="advanced">
+          <img class="tabs__media" src="https://placehold.co/476x337/f5f5f5/999999?text=Project+Preview" alt="">
+          <div class="tabs__steps">
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 01. 복합 문제 정의</p>
+              <p class="tabs__step-desc">여러 이해관계자가 얽힌 문제를 정의하고 우선순위를 설정합니다.</p>
+            </div>
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 02. 디자인 시스템 구축</p>
+              <p class="tabs__step-desc">직접 디자인 시스템을 설계하고 운영하는 경험을 쌓습니다.</p>
+            </div>
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 03. 산출물 관리</p>
+              <p class="tabs__step-desc">실무 수준의 협업 및 리뷰 프로세스를 체득합니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs__panel" data-panel="hackathon">
+          <img class="tabs__media" src="https://placehold.co/476x337/f5f5f5/999999?text=Project+Preview" alt="">
+          <div class="tabs__steps">
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 01. 아이디어 스프린트</p>
+              <p class="tabs__step-desc">제한 시간 안에 아이디어를 구체화합니다.</p>
+            </div>
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 02. 팀 빌드업</p>
+              <p class="tabs__step-desc">팀워크로 프로덕트를 빠르게 완성합니다.</p>
+            </div>
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 03. 발표 및 피드백</p>
+              <p class="tabs__step-desc">결과물을 발표하고 실무 감각의 피드백을 받습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabs__panel" data-panel="field">
+          <img class="tabs__media" src="https://placehold.co/476x337/f5f5f5/999999?text=Project+Preview" alt="">
+          <div class="tabs__steps">
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 01. 조직 시뮬레이션</p>
+              <p class="tabs__step-desc">실제 조직과 유사한 환경에서 프로덕트를 기획합니다.</p>
+            </div>
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 02. 다직군 협업</p>
+              <p class="tabs__step-desc">다양한 직군과 커뮤니케이션 역량을 강화합니다.</p>
+            </div>
+            <div class="tabs__step">
+              <p class="tabs__step-title">STEP 03. 포트폴리오 완성</p>
+              <p class="tabs__step-desc">완성도 높은 결과물로 포트폴리오를 마무리합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PORTFOLIO + TESTIMONIALS (top:2333, h:1471) ===================== -->
+  <section class="showcase">
+    <div class="showcase__decor" aria-hidden="true"></div>
+    <div class="container">
+      <h2 class="section-title">수강생 포트폴리오 예시</h2>
+      <div class="portfolio__list">
+        <article class="portfolio__row">
+          <div class="portfolio__thumb" aria-hidden="true"></div>
+          <div class="portfolio__body">
+            <h3>프로젝트명</h3>
+            <p>프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명</p>
+            <ul class="tag-list">
+              <li class="tag">키워드</li>
+              <li class="tag">키워드</li>
+              <li class="tag">키워드</li>
+            </ul>
+          </div>
+        </article>
+        <article class="portfolio__row">
+          <div class="portfolio__thumb" aria-hidden="true"></div>
+          <div class="portfolio__body">
+            <h3>프로젝트명</h3>
+            <p>프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명 프로젝트 설명</p>
+            <ul class="tag-list">
+              <li class="tag">키워드</li>
+              <li class="tag">키워드</li>
+              <li class="tag">키워드</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <h2 class="section-title" style="margin-top:96px;">수강생들의 생생한 후기</h2>
+      <div class="testimonials__panel">
+        <div class="testimonials__grid">
+          <article class="testimonial-card">
+            <p class="testimonial-card__stars">⭐️⭐️⭐️⭐️⭐️</p>
+            <p class="testimonial-card__quote">“ 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평. ”</p>
+            <hr>
+            <p class="testimonial-card__body">후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용</p>
+            <hr class="thin">
+            <p class="testimonial-card__name">OO님 | OOOO과정 O회차</p>
+            <p class="testimonial-card__meta">취업 현황 취업 현황</p>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__stars">⭐️⭐️⭐️⭐️⭐️</p>
+            <p class="testimonial-card__quote">“ 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평. ”</p>
+            <hr>
+            <p class="testimonial-card__body">후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용</p>
+            <hr class="thin">
+            <p class="testimonial-card__name">OO님 | OOOO과정 O회차</p>
+            <p class="testimonial-card__meta">취업 현황 취업 현황</p>
+          </article>
+          <article class="testimonial-card">
+            <p class="testimonial-card__stars">⭐️⭐️⭐️⭐️⭐️</p>
+            <p class="testimonial-card__quote">“ 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평 한줄평. ”</p>
+            <hr>
+            <p class="testimonial-card__body">후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용 후기 내용</p>
+            <hr class="thin">
+            <p class="testimonial-card__name">OO님 | OOOO과정 O회차</p>
+            <p class="testimonial-card__meta">취업 현황 취업 현황</p>
+          </article>
+        </div>
+      </div>
+      <div class="center-btn">
+        <a href="#" class="btn btn--dark">
+          수강생 포트폴리오 및 후기 더 보러가기 <i class="arrow"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CURRICULUM + INSTRUCTOR (top:3752, h:1466, dark #141418) ===================== -->
+  <section class="dark-block">
+
+    <div class="curriculum" id="curriculum">
+      <div class="container">
+        <h2 class="section-title section-title--light">단계별 학습 설계로<br>탄탄하게 쌓는 커리큘럼</h2>
+
+        <div class="curriculum__layout">
+          <ol class="timeline">
+            <li><span class="timeline__month">1개월</span><span class="timeline__desc">통합 프로덕트 디자인과 관리</span></li>
+            <li><span class="timeline__month">2개월</span><span class="timeline__desc">최신 디자인 전략과 사용자 리서치</span></li>
+            <li><span class="timeline__month">3개월</span><span class="timeline__desc">기본 프로젝트 시작</span></li>
+            <li><span class="timeline__month">4개월</span><span class="timeline__desc">심화 프로젝트 시작 및 해커톤</span></li>
+            <li><span class="timeline__month">5개월</span><span class="timeline__desc">실무 통합 프로젝트 시작</span></li>
+            <li><span class="timeline__month">6개월</span><span class="timeline__desc">실무 통합 프로젝트 집중 개발</span></li>
+            <li><span class="timeline__month">7개월</span><span class="timeline__desc">프로젝트 마무리, 최종 발표 및 수료</span></li>
+          </ol>
+
+          <div class="curriculum__detail">
+            <div class="curriculum__detail-item">
+              <h4>오리엔테이션</h4>
+              <p>과정 목표와 방향성을 설명하고, 상세 커리큘럼 및 학습 일정을 소개합니다.</p>
+            </div>
+            <div class="curriculum__detail-item">
+              <h4>프로덕트 디자인</h4>
+              <p>제품 가치 정의와 디자인 컨셉 도출, 사용자 중심 목업 제작과 피드백 수렴 방법을 학습합니다.</p>
+            </div>
+            <div class="curriculum__detail-item">
+              <h4>디자인 프로세스 관리</h4>
+              <p>디자인 요구사항 분석과 산출물 관리, 협업 및 리뷰 시스템을 체계적으로 운영하는 방법을 익힙니다.</p>
+            </div>
+            <div class="curriculum__detail-item">
+              <h4>디자인 시스템 구축 및 관리</h4>
+              <p>공통 UI 컴포넌트, 스타일 가이드, 디자인 토큰 적용 및 협업 도구 활용법을 습득합니다.</p>
+            </div>
+            <div class="curriculum__detail-item">
+              <h4>생성형 AI를 활용을 통한 프로덕트 디자인</h4>
+              <p>AI 모델 연동과 프롬프트 엔지니어링, 디자인 자동화와 혁신적 워크플로우를 실습합니다.</p>
+            </div>
+            <div class="curriculum__detail-item">
+              <h4>데이터 분석을 통한 UI/UX 개선</h4>
+              <p>사용자 행동 데이터 분석, A/B 테스트, KPI 기반 UX 평가 및 지속적 개선 전략을 학습합니다.</p>
+            </div>
+            <div class="curriculum__detail-item">
+              <h4>취업 준비 역량 테스트 대비</h4>
+              <p>매월 과정 별 역량 평가 및 피드백을 진행합니다. 최신 구직 동향 및 사례를 연구하며, 자기 PR을 위한 효과적인 취업 전략을 학습합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="instructor" id="instructor">
+      <div class="container">
+        <div class="instructor__head">
+          <h2 class="section-title section-title--light">탄탄한 기술과 <br>경험을 지닌 전문 강사</h2>
+          <a href="#" class="btn btn--primary">상세 커리큘럼 <i class="arrow"></i></a>
+        </div>
+
+        <div class="instructor__card">
+          <img class="instructor__photo" src="assets/character.png" alt="권진석 강사님 프로필 사진">
+          <div class="instructor__info">
+            <div class="instructor__intro">
+              <h3>권진석 강사님</h3>
+              <p>글로벌 테크 기업부터 스타트업 C-Level까지, 실무 리더십과 글로벌 감각을 겸비한 프로덕트 디자인 전문가</p>
+            </div>
+            <div class="instructor__history">
+              <h4>이력 소개</h4>
+              <ul>
+                <li><span class="badge badge--now">현재</span> kt cloud TECH UP 프로덕트 디자인 강사</li>
+                <li><span class="badge">이전</span> 스위치원 프로덕트 리드</li>
+                <li><span class="badge">이전</span> 피플스헬스 Chief Product Officer</li>
+                <li><span class="badge">이전</span> Awair Principal Product Designer / Product Manager (미국 샌프란시스코)</li>
+                <li><span class="badge">이전</span> 고위드 Product Designer</li>
+                <li><span class="badge">이전</span> Rocket Companies UI Designer (미국 디트로이트)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ===================== CAREER SUPPORT (top:5218, h:1026, #1C1E23) ===================== -->
+  <section class="career" id="career">
+    <div class="container">
+      <h2 class="section-title section-title--light">목표를 현실로 만드는<br>맞춤형 커리어 지원</h2>
+
+      <div class="career__grid">
+        <article class="career-card">
+          <span class="career-card__icon" aria-hidden="true"></span>
+          <h3>kt cloud 현직자 멘토링</h3>
+          <p>현직 전문가와의 1:1 혹은 그룹 멘토링을 통해 실무경험과 진로 방향에 대한 깊이 있는 인사이트를 얻습니다.</p>
+        </article>
+        <article class="career-card">
+          <span class="career-card__icon" aria-hidden="true"></span>
+          <h3>TECH UP 연합 해커톤</h3>
+          <p>TECH UP의 훈련생들이 모여 아이디어를 구체화하고 팀워크로 완성하며 실전 같은 프로젝트 경험을 쌓는 대규모 해커톤입니다.</p>
+        </article>
+        <article class="career-card">
+          <span class="career-card__icon" aria-hidden="true"></span>
+          <h3>이력서, 포트폴리오 컨설팅</h3>
+          <p>현직 전문가와의 1:1 혹은 그룹 멘토링을 통해 실무경험과 진로 방향에 대한 깊이 있는 인사이트를 얻습니다.</p>
+        </article>
+        <article class="career-card">
+          <span class="career-card__icon" aria-hidden="true"></span>
+          <h3>kt cloud 현직자 특강</h3>
+          <p>업계 전문가들이 직접 전하는 생생한 현장 사례와 노하우를 통해 최신 기술 동향과 직무 역량을 배울 수 있습니다.</p>
+        </article>
+        <article class="career-card">
+          <span class="career-card__icon" aria-hidden="true"></span>
+          <h3>kt cloud 현직자 코드리뷰</h3>
+          <p>현업 개발자에게 코드 품질과 구조에 대한 피드백을 받아 실무 수준의 개발 역량을 빠르게 성장시킬 수 있습니다.</p>
+        </article>
+        <article class="career-card">
+          <span class="career-card__icon" aria-hidden="true"></span>
+          <h3>우수 수료생 채용 지원 시 우대</h3>
+          <p>업계 전문가들이 직접 전하는 생생한 현장 사례와 노하우를 통해 최신 기술 동향과 직무 역량을 배울 수 있습니다.</p>
+        </article>
+      </div>
+
+      <h3 class="career__stats-title">수료생 취업 성과</h3>
+      <div class="stats">
+        <div class="stat-card">
+          <strong>84%</strong>
+          <span>대기업 및 중견·강소기업 취업률</span>
+        </div>
+        <div class="stat-card">
+          <strong>76%</strong>
+          <span>수료 후 3개월 이내 조기 취업률</span>
+        </div>
+        <div class="stat-card">
+          <strong>91%</strong>
+          <span>평균 서류 전형 합격률</span>
+        </div>
+      </div>
+
+      <div class="companies">
+        <p>수료생이 입사한 곳</p>
+        <div class="companies__logos" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ONLINE CAMPUS (top:6200, h:1277) ===================== -->
+  <section class="campus">
+    <div class="container">
+      <p class="eyebrow">100% 실시간 온라인 캠퍼스</p>
+      <h2 class="section-title">9 to 6 온라인의 한계를<br>없앤 몰입 환경 지원</h2>
+
+      <h3 class="campus__sub">처음부터 끝까지 밀착 서포트</h3>
+      <div class="campus__support">
+        <article class="support-card">
+          <img class="support-card__thumb" src="https://placehold.co/293x205/e9e9e9/999999?text=Recorded+Class" alt="">
+          <h4>복습용 녹화 강의</h4>
+          <p>놓친 내용이나 부족한 부분은 언제든 다시 보충할 수 있도록, 모든 강의는 수강 기간 내 녹화본으로 상시 제공됩니다.</p>
+        </article>
+        <article class="support-card">
+          <img class="support-card__thumb" src="https://placehold.co/293x205/e9e9e9/999999?text=Care+Manager" alt="">
+          <h4>밀착 케어 매니저</h4>
+          <p>끝까지 완주할 수 있도록 출석과 학습 스케줄을 꼼꼼히 챙기고, 수업 중에 흐트러지지 않도록 서포트하는 전담 매니저가 함께합니다.</p>
+        </article>
+        <article class="support-card">
+          <img class="support-card__thumb" src="https://placehold.co/293x205/e9e9e9/999999?text=Networking" alt="">
+          <h4>함께 성장하는 네트워킹 파티</h4>
+          <p>혼자가 아닌 연결의 힘으로 성장의 속도를 높이세요. 수강생, 수료생, 강사진이 함께하는 네트워킹을 통해 평생 든든한 커리어 네트워크를 만듭니다.</p>
+        </article>
+      </div>
+
+      <h3 class="campus__sub">몰입과 협업이 공존하는 열린 학습 공간</h3>
+      <div class="campus__gallery">
+        <img src="https://placehold.co/332x188/cfcfcf/888888?text=Space+1" alt="">
+        <img src="https://placehold.co/332x188/cfcfcf/888888?text=Space+2" alt="">
+        <img src="https://placehold.co/332x188/cfcfcf/888888?text=Space+3" alt="">
+        <img src="https://placehold.co/332x188/cfcfcf/888888?text=Space+4" alt="">
+        <img src="https://placehold.co/332x188/cfcfcf/888888?text=Space+5" alt="">
+      </div>
+
+      <div class="campus__spaces">
+        <article class="space-card">
+          <h4>구름 스퀘어 강남</h4>
+          <p>구름스퀘어 강남의 쾌적한 공간에서 팀원들과 직접 협업하며 실무와 같은 프로젝트 경험을 쌓을 수 있습니다. 대면 소통을 통해 커뮤니케이션과 팀워크 역량을 자연스럽게 키울 수 있습니다.</p>
+        </article>
+        <article class="space-card">
+          <h4>TECH UP 메타버스</h4>
+          <p>대회 가상현실 기반의 메타버스 환경에서 시간과 장소 제약 없이 몰입감 있는 학습과 협업을 경험할 수 있습니다. 실제와 유사한 협업 과정을 온라인에서도 생생하게 체험할 수 있습니다.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BENEFITS (top:7477, h:451) ===================== -->
+  <section class="benefits">
+    <div class="container">
+      <h2 class="section-title">아낌없이 제공하는 수강 혜택</h2>
+      <div class="benefits__grid">
+        <article class="benefit-card">
+          <span class="benefit-card__icon" aria-hidden="true"></span>
+          <h3>프로젝트 맞춤형 실습 인프라 지원</h3>
+          <p>클라우드 실습 및 과제 수행에 필요한 최적의 구동 환경과 리소스를 제공합니다.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__icon" aria-hidden="true"></span>
+          <h3>생성형 AI 도구 지원</h3>
+          <p>AI와 함께라면 학습이 더 빠르고 똑똑해집니다.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__icon" aria-hidden="true"></span>
+          <h3>인프런 강의 지원</h3>
+          <p>챌린저의 빠른 성장을 위해 1개월 간 인프런 강의를 무제한으로 지원합니다.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__icon" aria-hidden="true"></span>
+          <h3>직군별 실전 역량 테스트 지원</h3>
+          <p>각 직군별 맞춤형 모의 테스트(코딩 테스트, 실무 과제 등)를 통해 실력을 검증하고 한 단계 도약하세요.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__icon" aria-hidden="true"></span>
+          <h3>훈련 장려금 제공</h3>
+          <p>성장의 밑거름으로 월 최대 300,000원의 훈련장려금이 지급됩니다.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__icon" aria-hidden="true"></span>
+          <h3>고성능 실무용 노트북 대여</h3>
+          <p>기기 성능 걱정 없이 교육에만 몰입할 수 있도록, 프로젝트 수행에 최적화된 고사양 노트북 대여 서비스를 제공합니다.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== APPLICATION PROCESS (top:7928, h:979) ===================== -->
+  <section class="process" id="process">
+    <div class="container">
+      <h2 class="section-title">지원에서 합류까지<br>한눈에 확인하는 과정</h2>
+
+      <div class="process__tracks">
+        <article class="track">
+          <p class="track__label">TRACK 1</p>
+          <h3>Portfolio Battle</h3>
+          <p class="track__desc">프로젝트와 포트폴리오만으로 빠르게 선발할 수 있습니다.</p>
+
+          <ol class="track__steps">
+            <li>
+              <span class="track__step-no">01</span>
+              <div>
+                <p class="track__step-title">과정 지원</p>
+                <p class="track__step-sub">지원서 및 고용24 수강신청</p>
+                <p class="track__step-date">26.4.9 (목) - 26.5.25 (월)</p>
+              </div>
+            </li>
+            <li>
+              <span class="track__step-no">02</span>
+              <div>
+                <p class="track__step-title">최종 합격</p>
+                <p class="track__step-sub">본 전형은 별도의 면접 없이, 제출 서류를 바탕으로 최종 합격 여부가 안내됩니다.</p>
+                <p class="track__step-date">서류 제출 후 5영업일 이내 최종 합격 발표</p>
+              </div>
+            </li>
+          </ol>
+        </article>
+
+        <article class="track">
+          <p class="track__label">TRACK 2</p>
+          <h3>Hidden Gem</h3>
+          <p class="track__desc">가능성을 지닌 지원자는 그룹 면접으로 협업, 인성을 확인합니다.</p>
+
+          <ol class="track__steps">
+            <li>
+              <span class="track__step-no">01</span>
+              <div>
+                <p class="track__step-title">과정 지원</p>
+                <p class="track__step-sub">지원서 및 고용24 수강신청</p>
+                <p class="track__step-date">- 26.5.25 (월)</p>
+              </div>
+            </li>
+            <li>
+              <span class="track__step-no">02</span>
+              <div>
+                <p class="track__step-title">서류 합격</p>
+                <p class="track__step-date">26.5.26 (화)</p>
+              </div>
+            </li>
+            <li>
+              <span class="track__step-no">03</span>
+              <div>
+                <p class="track__step-title">면접</p>
+                <p class="track__step-date">26.5.28 (목) - 26.5.29 (금)</p>
+              </div>
+            </li>
+            <li>
+              <span class="track__step-no">03</span>
+              <div>
+                <p class="track__step-title">최종 합격</p>
+                <p class="track__step-date">26.6.2 (화)</p>
+              </div>
+            </li>
+          </ol>
+        </article>
+      </div>
+
+      <p class="process__note">
+        ※ Portfolio Battle 전형은 선착순으로 조기 마감될 수 있습니다.<br>
+        ※ Portfolio Battle 전형 지원자는 평가에 따라 Hidden Gem 면접 전형으로 이어서 진행될 수 있습니다.<br>
+        ※ 일정 외 지원자에게는 별도의 절차를 통해 개별 안내드립니다.<br>
+        ※ 정원은 선발 가능 최대 인원을 의미하며, 평가 기준을 충족하지 못한 경우 정원이 미달되더라도 선발하지 않을 수 있습니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ (top:8907, h:1210) ===================== -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2 class="section-title">자주 묻는 질문</h2>
+      <div class="faq__columns">
+
+        <div class="faq__column">
+          <h3>과정 소개</h3>
+          <div class="faq__list">
+            <button class="faq__item">모바일로도 학습이 가능한가요?<i class="chev"></i></button>
+            <button class="faq__item">중도에 포기하면 불이익이 있나요?<i class="chev"></i></button>
+            <button class="faq__item">K-디지털 트레이닝 과정도 훈련 장려금을 받을 수 있나요?<i class="chev"></i></button>
+          </div>
+        </div>
+
+        <div class="faq__column">
+          <h3>훈련 및 수강</h3>
+          <div class="faq__list">
+            <button class="faq__item">국민내일배움카드 발급 조건이 있나요?<i class="chev"></i></button>
+            <button class="faq__item">국민내일배움카드만 있으면 전액 무료인가요?<i class="chev"></i></button>
+            <button class="faq__item">국민내일배움카드 잔액과 상관없이 신청이 가능한가요?<i class="chev"></i></button>
+            <button class="faq__item">훈련과정탐색표를 받을 수 있나요?<i class="chev"></i></button>
+            <button class="faq__item">훈련은 어떤 형태로 진행되나요?<i class="chev"></i></button>
+            <button class="faq__item">커리큘럼은 어떻게 되나요?<i class="chev"></i></button>
+            <button class="faq__item">비대면 실시간 수업이 진행되는 동안 카메라나 마이크를 켜야 하나요?<i class="chev"></i></button>
+            <button class="faq__item">수업 출결은 어떻게 진행되나요?<i class="chev"></i></button>
+            <button class="faq__item">수강에 필요한 준비물이 있나요?<i class="chev"></i></button>
+            <button class="faq__item">PC나 노트북이 없는데, 지원 받을 수 있나요?<i class="chev"></i></button>
+            <button class="faq__item">권장 노트북 사양이 있을까요?<i class="chev"></i></button>
+          </div>
+        </div>
+
+        <div class="faq__column">
+          <h3>모집 및 선발</h3>
+          <div class="faq__list">
+            <button class="faq__item">면접은 어떻게 진행되나요?<i class="chev"></i></button>
+            <button class="faq__item">고등학생, 비전공자, 대학생, 재직자, 해외거주자도 훈련 신청이 가능한가요?<i class="chev"></i></button>
+            <button class="faq__item">K-디지털 트레이닝 과정 중복 지원이 가능한가요?<i class="chev"></i></button>
+            <button class="faq__item">K-디지털 트레이닝 과정을 이전에 수강한 적이 있는데 신청이 가능한가요?<i class="chev"></i></button>
+            <button class="faq__item">국민취업지원제도와 병행할 수 있나요?<i class="chev"></i></button>
+            <button class="faq__item">다음 기수는 언제 모집하나요?<i class="chev"></i></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="site-footer">
+  <div class="container footer__inner">
+    <p class="footer__logo">TECH UP</p>
+    <p class="footer__desc">사용자 중심 경험을 설계하는 디자인 전문가 과정 - KT cloud 프로덕트 디자인</p>
+    <p class="footer__copy">&copy; 2026 TECH UP. All rights reserved.</p>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="맨 위로">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>

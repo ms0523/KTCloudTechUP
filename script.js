@@ -137,12 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* ---------- FAQ accordion ---------- */
-  document.querySelectorAll('.faq__item').forEach((item) => {
-    item.addEventListener('click', () => {
-      item.classList.toggle('open');
-    });
-  });
 
   /* ---------- Sub nav active link on scroll ---------- */
   const subNavLinks = document.querySelectorAll('.sub-nav__link');
@@ -171,6 +165,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+
+/* ---------- FAQ accordion ---------- */
+document.querySelectorAll('.faq__item').forEach((item) => {
+  item.addEventListener('click', () => {
+    // 1. 클릭된 버튼에서 가장 가까운 부모 상자(.faq__block)를 찾습니다.
+    const currentBlock = item.closest('.faq__block');
+    
+    if (currentBlock) {
+      // 2. 부모 상자에 CSS와 약속된 'is-open' 클래스를 토글합니다.
+      currentBlock.classList.toggle('is-open');
+    }
+  });
+});
   /* ---------- Back to top ---------- */
   const toTop = document.getElementById('toTop');
   if (toTop) {

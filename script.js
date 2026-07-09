@@ -137,6 +137,81 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  
+
+// 포트폴리오 이미지 슬라이더 기능
+function initPortfolioSliders() {
+  // 1. 페이지 내 모든 프로젝트 카드(.js-portfolio-item)를 선택합니다.
+  const portfolioItems = document.querySelectorAll('.js-portfolio-item');
+  
+  if (portfolioItems.length === 0) {
+    console.log("포트폴리오 아이템을 찾지 못했습니다. 클래스명을 확인해주세요.");
+    return;
+  }
+
+  portfolioItems.forEach((item) => {
+    // 2. 현재 카드 안의 이전/다음 버튼과 이미지들을 찾습니다.
+    const prevBtn = item.querySelector('.btn-prev');
+    const nextBtn = item.querySelector('.btn-next');
+    const images = item.querySelectorAll('.portfolio__thumb img');
+    
+    // 3. 만약 이미지가 없거나 1장 이하라면 슬라이더 기능을 실행하지 않습니다.
+    if (images.length <= 1) return;
+
+    let currentIndex = 0; // 현재 보여지는 이미지의 인덱스 번호
+
+    // 4. 활성화된 이미지를 변경해주는 핵심 함수
+    function changeImage(index) {
+      images.forEach(img => img.classList.remove('active'));
+      images[index].classList.add('active');
+    }
+
+    // 👉 오른쪽(다음) 버튼 클릭 시
+    if (nextBtn) {
+      nextBtn.onclick = (e) => {
+        e.preventDefault(); // 링크 이동 방지
+        currentIndex++;
+        if (currentIndex >= images.length) currentIndex = 0;
+        changeImage(currentIndex);
+      };
+    }
+
+    // 👈 왼쪽(이전) 버튼 클릭 시
+    if (prevBtn) {
+      prevBtn.onclick = (e) => {
+        e.preventDefault(); // 링크 이동 방지
+        currentIndex--;
+        if (currentIndex < 0) currentIndex = images.length - 1;
+        changeImage(currentIndex);
+      };
+    }
+  });
+}
+
+// 브라우저가 준비되면 실행하되, 혹시 모르니 즉시 실행도 걸어둡니다.
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initPortfolioSliders);
+} else {
+  initPortfolioSliders();
+}
+
+
+// 후기 슬라이더
+const testimonialSwiper = new Swiper('.testimonial-swiper', {
+  slidesPerView: 'auto',
+  spaceBetween: 16,
+  loop: true,
+  speed: 6000,
+  allowTouchMove: true,
+  observeParents: true,
+  observer: true,
+  autoplay: {
+    delay: 0,
+    disableOnInteraction: true,
+    pauseOnMouseEnter: true,
+  },
+});
+
 
   /* ---------- Sub nav active link on scroll ---------- */
   const subNavLinks = document.querySelectorAll('.sub-nav__link');

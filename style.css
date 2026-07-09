@@ -36,7 +36,7 @@
 html{ scroll-behavior: smooth; scroll-padding-top: 40px calc(var(--header-h) + var(--subnav-h) + 10px); } 
 
 body{
-  width: 1440px;
+  width: 1920px;
   min-width: 900px;
   margin: 0 auto;
   font-family: var(--font-body);
@@ -259,7 +259,7 @@ section{ padding-block: 88px; }
    HERO
 ========================================================= */
 .hero {
-  height: 888px;
+  height: 900px;
   position: relative;
   overflow: hidden;
   background-image: url('./images/techup_introduce_background.png');
@@ -293,17 +293,8 @@ section{ padding-block: 88px; }
 .hero__glow {
   position: absolute;
   top: 50%; /* Y축 중앙 */
-  top:500px;
-  
-  /* 📍 [핵심] 퍼센트 기준점 대신 왼쪽 벽(0px)을 기준으로 고정 */
-  /* Figma에서 해당 그래픽의 x좌표값을 'px'로 넣어주세요. */
-  /* (예: Figma에서 x가 -23px이라면 calc(0px - 23px)로 입력) */
-  left: calc(0px + [Figma_X_좌표값]); 
-  
-  /* 만약 '오른쪽 벽'에 붙이고 싶다면? */
-  /* right: calc(0px + [Figma에서_오른쪽끝까지의_거리_px]); */
-
-  /* 💡 회전값(-33.66도)과 Y축 위치(-40%)를 함께 적용 */
+  top:400px;
+  left: 460px;
   transform: translateY(-40%) rotate(-33.66deg); 
   transform-origin: center center; /* 회전 중심을 이미지 중앙으로 */
   width: 2000px; 
@@ -735,7 +726,7 @@ section{ padding-block: 88px; }
   width: 732px;
   height: auto;
   top: -300px;
-  right: 40%;
+  right: 50%;
   transform: translateX(-20%) rotate(34deg); 
   transform-origin: top left;
   
@@ -745,28 +736,28 @@ section{ padding-block: 88px; }
   position: absolute;  
   z-index: 1;           
   pointer-events: none; 
-  width: 732px;
+  width: 832px;
   height: auto;
-  bottom: 600px;
-  left: 50%;
-  transform: translateX(350px) rotate(34deg); 
+  bottom: 30px;
+  left: 30%;
+  
 }
 .bg-Focus {
   position: absolute;  
-  z-index: 2;           
+  z-index: 1;           
   pointer-events: none; 
   width: 1300px;
   height: auto;
   bottom: 0px;
-  left: 10%;
+  left: 33%;
   transform-origin: top left;
 }
 
 .bg-Cylinder {
   position: absolute;  
-  z-index: 1;           
+  z-index: 2;           
   pointer-events: none; 
-  width: 280px;
+  width: 430px;
   height: auto;
   bottom: 0px;
   left: 10%;
@@ -775,9 +766,9 @@ section{ padding-block: 88px; }
 
 .bg-Pyramid {
   position: absolute;  
-  z-index: 1;           
+  z-index: 2;           
   pointer-events: none; 
-  width: 300px;
+  width: 400px;
   height: auto;
   top: 10px;
   right: 300px;
@@ -786,53 +777,140 @@ section{ padding-block: 88px; }
 
 .bg-Thorus {
   position: absolute;  
-  z-index: 1;           
+  z-index: 2;           
   pointer-events: none; 
-  width: 452px;
+  width: 552px;
   height: auto;
   top: 300px;
   transform-origin: top left;
 }
 .showcase .container {
   position: relative;
-  z-index: 2;           
+  z-index: 3;           
 }
-.portfolio__list{ display: flex; flex-direction: column; gap: 24px; }
-.portfolio__row{
-  display: flex;
-  gap: 28px;
-  flex-wrap: wrap;
+.portfolio__list { 
+  height: 700px;
+  display: flex; 
+  flex-direction: column; 
+  gap: 24px; 
   background: var(--color-white);
   border-radius: var(--radius-m);
-  padding: 16px;
-  box-shadow: 0 6px 24px rgba(0,0,0,.06);
+  background: rgb(204, 204, 204, 0.098);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-white);
+  box-shadow: 0 8px 32px rgba(1, 4, 4, 0.2);
 }
-.portfolio__thumb{
-  flex: 0 0 320px;
-  max-width: 100%;
-  height: 190px;
+
+.portfolio__row {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px;
+  align-items: center; /* 💡 이미지와 텍스트의 세로 높이 정렬 매칭 */
+}
+
+/* 📍 [새로 추가] 이미지와 좌우 화살표 버튼을 가두는 부모 박스 */
+.portfolio__thumb-wrap {
+  box-shadow: 0 8px 32px rgba(0, 2, 2, 0.25);
+  position: relative;
+  flex: 0 0 450px;  /* 기존 320px에서 380px로 키움 */
+  width: 450px;     /* 가로 크기 확장 */
+  height: 280px;    /* 세로 크기 확장 */
+  margin: 10px 40px;
+}
+
+.portfolio__thumb {
+  width: 100%;      /* 부모에 맞춰 100%로 설정 (120% X) */
+  height: 100%;     /* 부모에 맞춰 100%로 설정 (120% X) */
   border-radius: 9px;
   background: #D9D9D9;
+  position: relative;
+  overflow: hidden; 
 }
-.portfolio__body{ flex: 1 1 280px; }
-.portfolio__body h3{ color: var(--color-accent-soft); font-size: 20px; margin-bottom: 8px; }
-.portfolio__body p{ color: var(--color-gray-1); font-size: 14px; margin-bottom: 14px; }
+
+.portfolio__thumb img {
+  position: absolute;
+  width: 100%;      /* 100% 유지 */
+  height: 100%;     /* 100% 유지 */
+  object-fit: cover; /* 💡 비율을 깨지 않고 박스를 꽉 채우는 핵심 속성 */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.portfolio__thumb img.active {
+  opacity: 1;          /* 불투명하게 만듦 */
+  z-index: 2;          /* 맨 위로 올림 */
+}
+
+/* 📍 [새로 추가] 이미지 위 좌우에 배치될 화살표 버튼 공통 스타일 */
+.thumb-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* 💡 가로 중앙에서 Y축 정중앙 정렬 */
+  
+  /* 버튼 모양 커스텀 */
+  background: rgba(255, 255, 255, 0.75); /* 💡 이미지 위에서 잘 보이도록 반투명 흰색 배경 */
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  z-index: 5;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: background 0.2s;
+}
+
+.thumb-btn:hover {
+  background: rgba(255, 255, 255, 1); /* 마우스 올리면 선명하게 */
+}
+
+/* 📍 [새로 추가] 왼쪽 버튼과 오른쪽 버튼을 썸네일 양쪽 안쪽 벽에 밀착 */
+.thumb-btn.btn-prev { left: -20px; }
+.thumb-btn.btn-next { right: -20px; }
+
+/* 📍 구글 머티리얼 아이콘 크기/색상 제어 */
+.thumb-btn .material-symbols-outlined {
+  font-size: 18px;
+  color: #333333;
+}
+.thumb-btn.btn-prev .material-symbols-outlined {
+  padding-left: 4px; /* 💡 ios 화살표 아이콘 특성상 미세하게 왼쪽 쏠림 보정 */
+}
+
+.portfolio__body { flex: 1 1 280px; }
+.portfolio__body h3 { color: var(--color-accent-soft); font-size: 20px; margin-bottom: 8px; }
+.portfolio__body p { color: var(--color-gray-1); font-size: 14px; margin-bottom: 14px; }
 
 .testimonials__panel{
-  background: rgba(255,255,255,.55);
-  border: 1px solid var(--color-white);
-  box-shadow: 0 4px 30px rgba(0,0,0,.1);
-  border-radius: var(--radius-m);
-  padding: 40px 28px;
-  backdrop-filter: blur(30px);
+  overflow: hidden; /* 영역 밖으로 나가는 카드 숨김 */
+  width: 100%;
 }
-.testimonials__grid{
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
-  gap: 24px;
+
+/* Swiper 리니어 무한 루프 필수 설정 */
+.testimonial-swiper .swiper-wrapper {
+  height: 350px;
+  width: 350px;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  transition-timing-function: linear !important;
 }
+
+.testimonial-swiper .swiper-slide {
+  width: 300px !important; /* 카드 가로 크기 - 기존 카드 디자인에 맞게 조절하세요 */
+  height: 300px;
+  margin-right: 16px;
+  flex-shrink: 0;
+}
+
 .testimonial-card{
-  background: rgba(255,255,255,.6);
+  height: 100%;
+  background: rgba(204, 204, 204, 0.098);
+  box-shadow: 4px 4px 6px rgba(0,0,0,.1);
+  backdrop-filter: blur(20px);
   border: 1px solid var(--color-white);
   border-radius: var(--radius-m);
   padding: 20px;
@@ -842,7 +920,7 @@ section{ padding-block: 88px; }
 }
 .testimonial-card__stars{ font-size: 14px; }
 .testimonial-card__quote{ font-weight: 600; font-size: 14px; }
-.testimonial-card__body{ font-size: 13px; color: #515151; }
+.testimonial-card__body{ font-size: 13px; color: #515151; flex-grow: 1; }
 .testimonial-card__name{ font-size: 13px; }
 .testimonial-card__meta{ font-size: 12px; color: var(--color-gray-1); }
 

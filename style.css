@@ -934,9 +934,12 @@ section{ padding-block: 88px; }
   overflow: hidden;
   color: var(--color-white);
 }
-.curriculum, .instructor{ padding-block: 88px; }
-.curriculum{ position: relative;  padding-bottom: 40px;}
-.curriculum::before{
+/* 섹션 기본 여백 */
+.curriculum, .instructor { padding-block: 88px; }
+.curriculum { position: relative; padding-bottom: 40px; }
+
+/* 배경 그라데이션 */
+.curriculum::before {
   content: '';
   position: absolute; inset: 0;
   background:
@@ -945,58 +948,97 @@ section{ padding-block: 88px; }
     radial-gradient(300px 700px at 0% 60%, rgba(255,0,9,.18), transparent 70%);
   pointer-events: none;
 }
-.curriculum .container{ position: relative; }
+.curriculum .container { position: relative; }
 
-.curriculum__layout{
+/* 레이아웃 */
+.curriculum__layout {
   display: grid;
+  align-items: flex-start;
   grid-template-columns: 1fr 1.4fr;
   gap: 48px;
   margin-top: 48px;
 }
-.timeline{
+
+/* 타임라인 스타일 */
+.timeline {
+  list-style: none;
+  padding: 0 0 0 24px;
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 14px;
-  padding-left: 24px;
-  border-left: 2px solid rgba(255,255,255,.3);
+  border-left: 2px solid rgba(255, 255, 255, .3);
+  flex: 0 0 350px; /* 고정 너비 지정 */
 }
-.timeline li{
+
+.timeline li {
+  cursor: pointer;
   position: relative;
-  background: rgba(245,245,245,.12);
-  border-radius: 10px;
-  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 16px 20px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.6;
 }
-.timeline li::before{
+
+.timeline li::before {
   content: '';
   position: absolute;
-  left: -29px; top: 16px;
+  left: -29px; top: 18px;
   width: 8px; height: 8px;
   background: var(--color-white);
   border-radius: 50%;
 }
-.timeline__month{ display: block; font-weight: 600; font-size: 14px; }
-.timeline__desc{ display: block; font-size: 14px; opacity: .9; }
 
-.curriculum__detail{
+.timeline li:hover { opacity: 0.8; background: var(--color-accent-bg); }
+
+.timeline li.active {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-accent);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.timeline li.active::before {
+  background: var(--color-accent);
+  box-shadow: 0 0 10px var(--color-accent);
+  transform: scale(1.2);
+}
+
+/* 텍스트 스타일 */
+.timeline__month { display:block; font-size: 16px; color: var(--color-accent); margin-bottom: 4px; }
+.timeline__desc { font-size: 15px; font-weight: 500; color: #fff; }
+
+/* 1. 부모 박스: 높이 고정값 제거 */
+.curriculum__detail {
+  flex: 1; /* 남은 공간 모두 차지 */
+  padding: 32px;
   background: linear-gradient(180deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,.06) 100%);
   border: 1px solid rgba(255,255,255,.3);
   border-radius: var(--radius-m);
-  padding: 32px;
+  height: auto; /* 타임라인 높이에 영향받지 않음 */
   display: flex;
   flex-direction: column;
-  gap: 16px;
 }
-.curriculum__detail-item h4{
-  color: var(--color-accent);
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-.curriculum__detail-item p{ font-size: 13px; opacity: .85; }
 
-.curriculum-btn-wrap{ margin-top: 24px; justify-content: flex-end; display: flex;
+/* 2. 아이템: display: none 사용 (가장 확실함) */
+.curriculum__detail-item {
+  display: none; /* 안 보일 땐 공간 차지 안 함 */
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
+
+/* 3. 활성화 시: 블록으로 나타나게 함 */
+.curriculum__detail-item.active {
+  display: block; /* 나타날 때만 자기 높이만큼 박스를 밀어냄 */
+  opacity: 1;
+}
+/* 내부 텍스트 디자인 유지 */
+.curriculum__detail-item h4 { color: var(--color-accent); font-size: 16px; margin-bottom: 4px; }
+.curriculum__detail-item p { font-size: 14px; opacity: .85; margin-bottom: 20px; }
+
+
 
 
 /* ---------- Instructor ---------- */

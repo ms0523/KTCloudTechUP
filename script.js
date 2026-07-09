@@ -212,7 +212,67 @@ const testimonialSwiper = new Swiper('.testimonial-swiper', {
   },
 });
 
+//커리큘럼
+document.querySelectorAll('.timeline li').forEach((li) => {
+  li.addEventListener('click', () => {
+    // 1. 모든 타임라인/상세 아이템에서 active 클래스 제거
+    document.querySelectorAll('.timeline li').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.curriculum__detail-item').forEach(el => el.classList.remove('active'));
 
+    // 2. 클릭한 타임라인에 active 추가
+    li.classList.add('active');
+
+    // 3. 해당 index에 맞는 상세 아이템 보여주기
+    const index = li.getAttribute('data-index');
+    document.querySelectorAll('.curriculum__detail-item')[index].classList.add('active');
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const timelineItems = document.querySelectorAll('.timeline li');
+  const detailItems = document.querySelectorAll('.curriculum__detail-item');
+
+  timelineItems.forEach((li, index) => {
+    li.addEventListener('click', () => {
+      
+      // 1. 모든 항목 active 초기화
+      timelineItems.forEach(item => item.classList.remove('active'));
+      detailItems.forEach(item => item.classList.remove('active'));
+
+      // 2. 클릭한 항목 active 추가
+      li.classList.add('active');
+      
+      // 3. 해당하는 상세 내용 보여주기
+      if (detailItems[index]) {
+        detailItems[index].classList.add('active');
+      }
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const timelineItems = document.querySelectorAll('.timeline li');
+  const detailItems = document.querySelectorAll('.curriculum__detail-item');
+
+  timelineItems.forEach((li) => {
+    li.addEventListener('click', () => {
+      const targetIndex = li.dataset.index;
+
+      // 1. 타임라인 활성화 상태 갱신
+      timelineItems.forEach(item => item.classList.remove('active'));
+      li.classList.add('active');
+
+      // 2. 상세 아이템 활성화 상태 갱신
+      detailItems.forEach((detail) => {
+        if (detail.dataset.index === targetIndex) {
+          detail.classList.add('active');
+        } else {
+          detail.classList.remove('active');
+        }
+      });
+    });
+  });
+});
   /* ---------- Sub nav active link on scroll ---------- */
   const subNavLinks = document.querySelectorAll('.sub-nav__link');
   const sections = Array.from(subNavLinks)

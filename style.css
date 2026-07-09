@@ -36,8 +36,9 @@
 html{ scroll-behavior: smooth; scroll-padding-top: 40px calc(var(--header-h) + var(--subnav-h) + 10px); } 
 
 body{
+  width: 1440px;
   min-width: 900px;
-  margin: 0;
+  margin: 0 auto;
   font-family: var(--font-body);
   color: var(--color-black);
   background: var(--color-white);
@@ -258,6 +259,7 @@ section{ padding-block: 88px; }
    HERO
 ========================================================= */
 .hero {
+  height: 888px;
   position: relative;
   overflow: hidden;
   background-image: url('./images/techup_introduce_background.png');
@@ -274,7 +276,6 @@ section{ padding-block: 88px; }
   
   isolation: isolate;
   /* 💡 히어로 섹션이 브라우저 화면 높이를 가득 채우도록 보장 */
-  min-height: 100vh;
   box-sizing: border-box;
 }
 
@@ -291,11 +292,20 @@ section{ padding-block: 88px; }
 /* 1. 기본 데스크톱 화면 설정 */
 .hero__glow {
   position: absolute;
-  top: 50%;
-  left: 30%;                       /* 💡 오른쪽 벽에 무조건 밀착 */
-  transform-origin: right center; /* 💡 화면 줄어들 때 오른쪽 고정, 왼쪽만 잘려나가게 설정 */
-  transform: translateY(-40%);    /* 💡 Y축 위치 미세조정 */
+  top: 50%; /* Y축 중앙 */
+  top:500px;
   
+  /* 📍 [핵심] 퍼센트 기준점 대신 왼쪽 벽(0px)을 기준으로 고정 */
+  /* Figma에서 해당 그래픽의 x좌표값을 'px'로 넣어주세요. */
+  /* (예: Figma에서 x가 -23px이라면 calc(0px - 23px)로 입력) */
+  left: calc(0px + [Figma_X_좌표값]); 
+  
+  /* 만약 '오른쪽 벽'에 붙이고 싶다면? */
+  /* right: calc(0px + [Figma에서_오른쪽끝까지의_거리_px]); */
+
+  /* 💡 회전값(-33.66도)과 Y축 위치(-40%)를 함께 적용 */
+  transform: translateY(-40%) rotate(-33.66deg); 
+  transform-origin: center center; /* 회전 중심을 이미지 중앙으로 */
   width: 2000px; 
   height: 2000px;
   background-image: url('./images/Circle_graphic.png');
@@ -472,8 +482,8 @@ section{ padding-block: 88px; }
 .intro__decor{
   position: absolute; inset: 0;
   background:
-    radial-gradient(320px 240px at 8% 30%, rgba(59,161,255,.16), transparent 70%),
-    radial-gradient(280px 380px at 95% 70%, rgba(255, 250, 117, 0.1), transparent 70%);
+    radial-gradient(320px 340px at calc(50% - 450px) 150px, rgba(59,161,255,.16), transparent 100%),
+    radial-gradient(280px 380px at calc(50% + 450px) 70%, rgba(255, 250, 117, 0.1), transparent 70%);
   pointer-events: none;
 }
 .intro__inner{ text-align: center; }
@@ -709,18 +719,84 @@ section{ padding-block: 88px; }
    SHOWCASE (portfolio + testimonials, same visual block)
 ========================================================= */
 .showcase{
-  background: linear-gradient(180deg, #ffffff 0%, #f8f5ff 60%, #ffffff 100%);
+  background-color: #FCFCFC;
+  position: relative;
   overflow: hidden;
 }
 .showcase__decor{
   position: absolute; inset: 0;
-  background:
-    radial-gradient(380px 300px at -6% 15%, rgba(59,161,255,.14), transparent 70%),
-    radial-gradient(300px 500px at 102% 40%, rgba(255,0,9,.12), transparent 70%),
-    radial-gradient(260px 260px at 15% 92%, rgba(252,115,255,.16), transparent 70%);
   pointer-events: none;
 }
 
+.bg-glow-effect {
+  position: absolute;  
+  z-index: 1;           
+  pointer-events: none; 
+  width: 732px;
+  height: auto;
+  top: -300px;
+  right: 40%;
+  transform: translateX(-20%) rotate(34deg); 
+  transform-origin: top left;
+  
+}
+
+.bg-glow-effect-2 {
+  position: absolute;  
+  z-index: 1;           
+  pointer-events: none; 
+  width: 732px;
+  height: auto;
+  bottom: 600px;
+  left: 50%;
+  transform: translateX(350px) rotate(34deg); 
+}
+.bg-Focus {
+  position: absolute;  
+  z-index: 2;           
+  pointer-events: none; 
+  width: 1300px;
+  height: auto;
+  bottom: 0px;
+  left: 10%;
+  transform-origin: top left;
+}
+
+.bg-Cylinder {
+  position: absolute;  
+  z-index: 1;           
+  pointer-events: none; 
+  width: 280px;
+  height: auto;
+  bottom: 0px;
+  left: 10%;
+  transform-origin: top left;
+}
+
+.bg-Pyramid {
+  position: absolute;  
+  z-index: 1;           
+  pointer-events: none; 
+  width: 300px;
+  height: auto;
+  top: 10px;
+  right: 300px;
+  transform-origin: top left;
+}
+
+.bg-Thorus {
+  position: absolute;  
+  z-index: 1;           
+  pointer-events: none; 
+  width: 452px;
+  height: auto;
+  top: 300px;
+  transform-origin: top left;
+}
+.showcase .container {
+  position: relative;
+  z-index: 2;           
+}
 .portfolio__list{ display: flex; flex-direction: column; gap: 24px; }
 .portfolio__row{
   display: flex;

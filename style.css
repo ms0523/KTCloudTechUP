@@ -1056,14 +1056,15 @@ section{ padding-block: 88px; }
 }
 
 /* =========================================================
-   FAQ
+   FAQ (Grid Layout & Column)
 ========================================================= */
-.faq__columns{
+.faq__columns {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
   gap: 32px;
 }
-.faq__column h3{
+
+.faq__column h3 {
   color: var(--color-accent);
   font-size: 16px;
   font-weight: 600;
@@ -1071,28 +1072,129 @@ section{ padding-block: 88px; }
   border-bottom: .5px solid var(--color-gray-2);
   margin-bottom: 16px;
 }
-.faq__list{ display: flex; flex-direction: column; gap: 10px; }
-.faq__item{
+
+.faq__list { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 10px; 
+}
+
+/* ---------------------------------------------------------
+   💡 개별 아코디언 블록 
+--------------------------------------------------------- */
+.faq__block {
+  background: var(--color-bg-soft, #f8f9fa);
+  border-radius: 5px;
+  overflow: hidden; /* 답변이 열리기 전까지 숨김 처리 필수 */
+  transition: background-color 0.3s ease;
+}
+
+/* 질문 버튼 스타일 */
+.faq__item {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   width: 100%;
   text-align: left;
-  padding: 10px 14px;
-  background: var(--color-bg-soft);
-  border-radius: 5px;
+  padding: 12px 14px;
+  background: transparent; /* 부모 배경을 따르도록 투명화 */
+  border: none;
   color: var(--color-gray-1);
   font-size: 13px;
   font-weight: 500;
+  cursor: pointer;
 }
-.faq__item .chev{
+
+/* ---------------------------------------------------------
+    + to X 아이콘
+--------------------------------------------------------- */
+.faq__toggle-btn {
+  position: relative;
   flex-shrink: 0;
-  transform: rotate(135deg);
-  transition: transform .2s ease;
-  border-color: var(--color-gray-1);
+  width: 10px;
+  height: 10px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.faq__item.open .chev{ transform: rotate(-45deg); }
+
+/* 플러스 모양 선 공통 스타일 */
+.faq__toggle-btn::before,
+.faq__toggle-btn::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-gray-1, #666666);
+  transition: background-color 0.25s ease, opacity 0.2s ease;
+}
+
+/* 가로선 (-) -> 정확히 정중앙(50%)에 오도록 개선 */
+.faq__toggle-btn::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+/* 세로선 (|) -> 정확히 정중앙(50%)에 오도록 개선 */
+.faq__toggle-btn::after {
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+/* ---------------------------------------------------------
+  (.is-open)
+--------------------------------------------------------- */
+.faq__block.is-open .faq__toggle-btn {
+  transform: rotate(45deg);
+}
+
+.faq__block.is-open .faq__toggle-btn::before,
+.faq__block.is-open .faq__toggle-btn::after {
+  background-color: #FF4D4D;
+}
+
+/* ---------------------------------------------------------
+  슬라이딩 효과
+--------------------------------------------------------- */
+.faq__answer {
+  max-height: 0; /* 평소에는 높이를 0으로 완벽 차단 */
+  overflow: hidden;
+  padding: 0 14px; /* 좌우 패딩만 유지 */
+  transition: max-height 0.3s ease-in-out;
+}
+
+.faq__answer p {
+  color: #555555;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+  padding-bottom: 6px; 
+}
+
+/* ul 태그에 동그라미 점과 왼쪽 여백 추가 */
+.faq__answer ul {
+  color: #555555;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+  padding-left: 8px;
+  list-style-type: disc !important;
+}
+
+/* 💡 부모에게 .is-open이 붙었을 때 실제 스르륵 펼쳐지게 만드는 구문 */
+.faq__block.is-open .faq__answer {
+  max-height: 800px; /* 답변이 충분히 보일 수 있는 최대 높이 */
+}
+
+.faq__answer ul li {
+  margin-bottom: 4px;  
+}
+.faq__answer ul li:last-child {
+  margin-bottom: 0px;    
+}
 
 /* =========================================================
    FOOTER

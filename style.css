@@ -1171,12 +1171,29 @@ section{ padding-block: 88px; }
   font-size: 13px;
   line-height: 1.5;
   margin: 0;
-  padding-bottom: 14px; /* 열렸을 때 생길 하단 여백 정의 */
+  padding-bottom: 6px; 
+}
+
+/* ul 태그에 동그라미 점과 왼쪽 여백 추가 */
+.faq__answer ul {
+  color: #555555;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0;
+  padding-left: 8px;
+  list-style-type: disc !important;
 }
 
 /* 💡 부모에게 .is-open이 붙었을 때 실제 스르륵 펼쳐지게 만드는 구문 */
 .faq__block.is-open .faq__answer {
-  max-height: 200px; /* 답변이 충분히 보일 수 있는 최대 높이 */
+  max-height: 800px; /* 답변이 충분히 보일 수 있는 최대 높이 */
+}
+
+.faq__answer ul li {
+  margin-bottom: 4px;  
+}
+.faq__answer ul li:last-child {
+  margin-bottom: 0px;    
 }
 
 /* =========================================================

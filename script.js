@@ -10,6 +10,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  /* ---------- Sub nav active link on scroll ---------- */
+  const subNavLinks = document.querySelectorAll('.sub-nav__link');
+  const sections = Array.from(subNavLinks)
+    .map((link) => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+
+  const setActiveLink = () => {
+    const scrollPos = window.scrollY + 140;
+    let currentIndex = 0;
+    sections.forEach((section, i) => {
+      if (section.offsetTop <= scrollPos) currentIndex = i;
+    });
+    subNavLinks.forEach((link, i) => {
+      link.classList.toggle('active', i === currentIndex);
+    });
+  };
+  window.addEventListener('scroll', setActiveLink, { passive: true });
+  setActiveLink();
+
+  /* ---------- Close mobile nav after click ---------- */
+  document.querySelectorAll('.sub-nav__link, .top-nav a').forEach((link) => {
+    link.addEventListener('click', () => {
+      topNav?.classList.remove('open');
+      navToggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
   /* ---------- Sub Navigation Sticky ---------- */
   const subNav = document.getElementById('subNav');
   const subNavSpacer = document.getElementById('subNavSpacer');
@@ -47,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSubNavState();
   }
 
-  /* ---------- 💡 Intro Character Animation ---------- */
+  /* ---------- Intro ---------- */
   const introSection = document.querySelector('.intro');
   if (introSection) {
     const introObserver = new IntersectionObserver(
@@ -67,28 +94,22 @@ document.addEventListener('DOMContentLoaded', () => {
     introObserver.observe(introSection);
   }
 
-  /* ---------- ✨ TECH UP PROCESS (멀티 탭 Swiper 완벽 수정본) ---------- */
+  /* ---------- TECH UP PROCESS  ---------- */
   const tabButtons = document.querySelectorAll('.tabs__btn');
   const tabPanels = document.querySelectorAll('.tabs__panel');
   let projectSwiper = null;
 
-  // 활성화된 탭 패널 내부의 Swiper만 조준해서 초기화하는 함수
   function initActiveSwiper() {
-    // 1. 현재 active 클래스가 붙은 패널을 찾습니다.
     const activePanel = document.querySelector('.tabs__panel.active');
     if (!activePanel) return;
-
-    // 2. 그 패널 '내부'에 있는 스위퍼 엘리먼트를 찾습니다.
     const swiperTarget = activePanel.querySelector('.project-swiper');
     if (!swiperTarget) return;
 
-    // 3. 기존에 돌아가던 Swiper 인스턴스가 있다면 파괴
     if (projectSwiper) {
       projectSwiper.destroy(true, true);
       projectSwiper = null;
     }
 
-    // 4. 찾은 타겟에만 정확하게 Swiper를 입혀줍니다.
     projectSwiper = new Swiper(swiperTarget, {
       slidesPerView: 'auto',
       spaceBetween: 16,
@@ -104,21 +125,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 첫 페이지 로드 시 (첫 번째 탭 기본 실행)
   initActiveSwiper();
 
-  // 탭 버튼 클릭 기능
   tabButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const target = btn.dataset.tab;
 
-      // 1. 기존 슬라이더 안전하게 파괴
       if (projectSwiper) {
         projectSwiper.destroy(true, true);
         projectSwiper = null;
       }
 
-      // 2. 탭 활성화 클래스 교체
       tabButtons.forEach((b) => {
         b.classList.remove('active');
         b.setAttribute('aria-selected', 'false');
@@ -130,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
         panel.classList.toggle('active', panel.dataset.panel === target);
       });
 
-      // 3. 탭이 완전히 바뀌어 display: flex가 반영된 후(100ms 지연) 해당 패널 슬라이더 켜기
       setTimeout(() => {
         initActiveSwiper();
       }, 100);
@@ -139,9 +155,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
   
 
-// 포트폴리오 이미지 슬라이더 기능
+  document.addEventListener("DOMContentLoaded", () => {
+  // 관찰할 대상들 (도형들)
+  const targets = document.querySelectorAll('.bg-Focus, .bg-Cylinder, .bg-Pyramid, .bg-Thorus');
+
+  const observerOptions = {
+    root: null, // 뷰포트 기준
+    threshold: 0.2 // 20% 진입 시
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('bg-active');
+        // 애니메이션 한 번만 실행하고 싶다면 아래 주석 해제
+        // observer.unobserve(entry.target); 
+      } else {
+        entry.target.classList.remove('bg-active');
+      }
+    });
+  }, observerOptions);
+
+  targets.forEach(target => observer.observe(target));
+});
+
+/* ---------- PORTFOLIO  ---------- */
 function initPortfolioSliders() {
-  // 1. 페이지 내 모든 프로젝트 카드(.js-portfolio-item)를 선택합니다.
   const portfolioItems = document.querySelectorAll('.js-portfolio-item');
   
   if (portfolioItems.length === 0) {
@@ -150,23 +189,19 @@ function initPortfolioSliders() {
   }
 
   portfolioItems.forEach((item) => {
-    // 2. 현재 카드 안의 이전/다음 버튼과 이미지들을 찾습니다.
     const prevBtn = item.querySelector('.btn-prev');
     const nextBtn = item.querySelector('.btn-next');
     const images = item.querySelectorAll('.portfolio__thumb img');
     
-    // 3. 만약 이미지가 없거나 1장 이하라면 슬라이더 기능을 실행하지 않습니다.
     if (images.length <= 1) return;
 
     let currentIndex = 0; // 현재 보여지는 이미지의 인덱스 번호
 
-    // 4. 활성화된 이미지를 변경해주는 핵심 함수
     function changeImage(index) {
       images.forEach(img => img.classList.remove('active'));
       images[index].classList.add('active');
     }
 
-    // 👉 오른쪽(다음) 버튼 클릭 시
     if (nextBtn) {
       nextBtn.onclick = (e) => {
         e.preventDefault(); // 링크 이동 방지
@@ -176,7 +211,6 @@ function initPortfolioSliders() {
       };
     }
 
-    // 👈 왼쪽(이전) 버튼 클릭 시
     if (prevBtn) {
       prevBtn.onclick = (e) => {
         e.preventDefault(); // 링크 이동 방지
@@ -188,15 +222,13 @@ function initPortfolioSliders() {
   });
 }
 
-// 브라우저가 준비되면 실행하되, 혹시 모르니 즉시 실행도 걸어둡니다.
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initPortfolioSliders);
 } else {
   initPortfolioSliders();
 }
 
-
-// 후기 슬라이더
+/* ---------- TESTIMONIAL  ---------- */
 const testimonialSwiper = new Swiper('.testimonial-swiper', {
   slidesPerView: 'auto',
   spaceBetween: 16,
@@ -212,17 +244,14 @@ const testimonialSwiper = new Swiper('.testimonial-swiper', {
   },
 });
 
-//커리큘럼
+/* ---------- CURRICULUM ---------- */
 document.querySelectorAll('.timeline li').forEach((li) => {
   li.addEventListener('click', () => {
-    // 1. 모든 타임라인/상세 아이템에서 active 클래스 제거
     document.querySelectorAll('.timeline li').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.curriculum__detail-item').forEach(el => el.classList.remove('active'));
 
-    // 2. 클릭한 타임라인에 active 추가
     li.classList.add('active');
 
-    // 3. 해당 index에 맞는 상세 아이템 보여주기
     const index = li.getAttribute('data-index');
     document.querySelectorAll('.curriculum__detail-item')[index].classList.add('active');
   });
@@ -235,14 +264,11 @@ document.addEventListener('DOMContentLoaded', () => {
   timelineItems.forEach((li, index) => {
     li.addEventListener('click', () => {
       
-      // 1. 모든 항목 active 초기화
       timelineItems.forEach(item => item.classList.remove('active'));
       detailItems.forEach(item => item.classList.remove('active'));
 
-      // 2. 클릭한 항목 active 추가
       li.classList.add('active');
       
-      // 3. 해당하는 상세 내용 보여주기
       if (detailItems[index]) {
         detailItems[index].classList.add('active');
       }
@@ -258,11 +284,9 @@ document.addEventListener('DOMContentLoaded', () => {
     li.addEventListener('click', () => {
       const targetIndex = li.dataset.index;
 
-      // 1. 타임라인 활성화 상태 갱신
       timelineItems.forEach(item => item.classList.remove('active'));
       li.classList.add('active');
 
-      // 2. 상세 아이템 활성화 상태 갱신
       detailItems.forEach((detail) => {
         if (detail.dataset.index === targetIndex) {
           detail.classList.add('active');
@@ -273,33 +297,47 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-  /* ---------- Sub nav active link on scroll ---------- */
-  const subNavLinks = document.querySelectorAll('.sub-nav__link');
-  const sections = Array.from(subNavLinks)
-    .map((link) => document.querySelector(link.getAttribute('href')))
-    .filter(Boolean);
 
-  const setActiveLink = () => {
-    const scrollPos = window.scrollY + 140;
-    let currentIndex = 0;
-    sections.forEach((section, i) => {
-      if (section.offsetTop <= scrollPos) currentIndex = i;
-    });
-    subNavLinks.forEach((link, i) => {
-      link.classList.toggle('active', i === currentIndex);
-    });
-  };
-  window.addEventListener('scroll', setActiveLink, { passive: true });
-  setActiveLink();
+/* career status */
+const counters = document.querySelectorAll('.count');
 
-  /* ---------- Close mobile nav after click ---------- */
-  document.querySelectorAll('.sub-nav__link, .top-nav a').forEach((link) => {
-    link.addEventListener('click', () => {
-      topNav?.classList.remove('open');
-      navToggle?.setAttribute('aria-expanded', 'false');
-    });
+const runCounter = () => {
+  counters.forEach(counter => {
+    // 1. 애니메이션 시작 전 항상 0으로 초기화
+    counter.innerText = '30';
+    
+    const target = parseInt(counter.getAttribute('data-target')) || 0;
+    const updateCount = () => {
+      const current = parseInt(counter.innerText) || 0;
+      const inc = target / 50;
+
+      if (current < target) {
+        counter.innerText = Math.ceil(current + inc);
+        setTimeout(updateCount, 50);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCount();
   });
+};
 
+// IntersectionObserver 설정
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // 2. 화면에 들어올 때마다 매번 실행
+      runCounter();
+    } else {
+      // 3. 화면 밖으로 나가면 숫자를 0으로 초기화 (다시 들어올 때 재생을 위해)
+      counters.forEach(counter => counter.innerText = '0');
+    }
+  });
+}, { threshold: 0.5 }); // 화면의 50%가 보일 때 실행
+
+const statsSection = document.querySelector('.stats');
+if (statsSection) observer.observe(statsSection);
+  
 
 /* ---------- FAQ accordion ---------- */
 document.querySelectorAll('.faq__item').forEach((item) => {
